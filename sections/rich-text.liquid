@@ -6,13 +6,32 @@
     padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px;
   }
 
+  .section-{{ section.id }}-padding .rich-text__wrapper {
+    min-height: {{ section.settings.content_height_mobile }}px;
+    {% case section.settings.vertical_content_position %}
+      {% when 'middle' %}align-items: center;
+      {% when 'bottom' %}align-items: end;
+      {% else %}align-items: start;
+    {% endcase %}
+  }
+
   @media screen and (min-width: 750px) {
+    .section-{{ section.id }}-padding .rich-text__wrapper {
+      min-height: {{ section.settings.content_height_desktop }}px;
+    }
+
     .section-{{ section.id }}-padding {
       padding-top: {{ section.settings.padding_top }}px;
       padding-bottom: {{ section.settings.padding_bottom }}px;
     }
   }
 {%- endstyle -%}
+
+{%- for block in section.blocks -%}
+  {%- if block.type == 'heading' or block.type == 'text' or block.type == 'caption' -%}
+    {% render 'block-typography', block: block, section_id: section.id %}
+  {%- endif -%}
+{%- endfor -%}
 
 <div class="isolate{% unless section.settings.full_width %} page-width{% endunless %}">
   <div class="rich-text content-container color-{{ section.settings.color_scheme }} gradient{% if section.settings.full_width %} rich-text--full-width content-container--full-width{% endif %} section-{{ section.id }}-padding">
@@ -21,7 +40,6 @@
         {%- for block in section.blocks -%}
           {%- case block.type -%}
             {%- when 'heading' -%}
-                {% render 'block-typography', block: block, section_id: section.id %}
               <h2 id="Typography-{{ section.id }}-{{ block.id }}"
                 class="rich-text__heading rte inline-richtext {{ block.settings.heading_size }}{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}"
                 {{ block.shopify_attributes }}
@@ -33,7 +51,6 @@
                 {{ block.settings.heading }}
               </h2>
             {%- when 'caption' -%}
-                {% render 'block-typography', block: block, section_id: section.id %}
               <p id="Typography-{{ section.id }}-{{ block.id }}"
                 class="rich-text__caption {{ block.settings.text_style }} {{ block.settings.text_style }}--{{ block.settings.text_size }}{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}"
                 {{ block.shopify_attributes }}
@@ -45,7 +62,6 @@
                 {{ block.settings.caption | escape }}
               </p>
             {%- when 'text' -%}
-                {% render 'block-typography', block: block, section_id: section.id %}
               <div id="Typography-{{ section.id }}-{{ block.id }}"
                 class="rich-text__text rte{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}"
                 {{ block.shopify_attributes }}
@@ -115,19 +131,62 @@
       "options": [
         {
           "value": "left",
-          "label": "t:sections.rich-text.settings.desktop_content_position.options__1.label"
+          "label": "Left side of section"
         },
         {
           "value": "center",
-          "label": "t:sections.rich-text.settings.desktop_content_position.options__2.label"
+          "label": "Center of section"
         },
         {
           "value": "right",
-          "label": "t:sections.rich-text.settings.desktop_content_position.options__3.label"
+          "label": "Right side of section"
         }
       ],
       "default": "center",
-      "label": "t:sections.rich-text.settings.desktop_content_position.label"
+      "label": "Content container position (desktop)",
+      "info": "Moves the whole content container to the left, center, or right of the section on desktop. Mobile content uses the available width."
+    },
+    {
+      "type": "select",
+      "id": "vertical_content_position",
+      "label": "Vertical content position",
+      "options": [
+        {
+          "value": "top",
+          "label": "Top"
+        },
+        {
+          "value": "middle",
+          "label": "Middle"
+        },
+        {
+          "value": "bottom",
+          "label": "Bottom"
+        }
+      ],
+      "default": "top",
+      "info": "Positions the content within the minimum content height below. If content fills the space, all positions look the same."
+    },
+    {
+      "type": "range",
+      "id": "content_height_desktop",
+      "label": "Desktop minimum content height",
+      "min": 0,
+      "max": 1000,
+      "step": 20,
+      "unit": "px",
+      "default": 0,
+      "info": "Excludes section padding. Set above 0 to create vertical space; content can expand the section."
+    },
+    {
+      "type": "range",
+      "id": "content_height_mobile",
+      "label": "Mobile minimum content height",
+      "min": 0,
+      "max": 1000,
+      "step": 20,
+      "unit": "px",
+      "default": 0
     },
     {
       "type": "select",
@@ -135,19 +194,20 @@
       "options": [
         {
           "value": "left",
-          "label": "t:sections.rich-text.settings.content_alignment.options__1.label"
+          "label": "Align left"
         },
         {
           "value": "center",
-          "label": "t:sections.rich-text.settings.content_alignment.options__2.label"
+          "label": "Align center"
         },
         {
           "value": "right",
-          "label": "t:sections.rich-text.settings.content_alignment.options__3.label"
+          "label": "Align right"
         }
       ],
       "default": "center",
-      "label": "t:sections.rich-text.settings.content_alignment.label"
+      "label": "Text alignment",
+      "info": "Aligns headings, text, and buttons inside the content container on all screen sizes. This does not move the container."
     },
     {
       "type": "color_scheme",

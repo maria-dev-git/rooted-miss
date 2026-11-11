@@ -1246,6 +1246,43 @@
     "settings": [
       {
         "type": "select",
+        "id": "product_card_image_ratio",
+        "label": "Product image ratio",
+        "default": "portrait",
+        "options": [
+          {
+            "value": "portrait",
+            "label": "Portrait (4:5)"
+          },
+          {
+            "value": "portrait_tall",
+            "label": "Tall portrait (2:3)"
+          },
+          {
+            "value": "square",
+            "label": "Square (1:1)"
+          },
+          {
+            "value": "landscape",
+            "label": "Landscape (4:3)"
+          },
+          {
+            "value": "wide",
+            "label": "Wide (16:9)"
+          },
+          {
+            "value": "adapt",
+            "label": "Adapt to image"
+          },
+          {
+            "value": "section",
+            "label": "Use section setting"
+          }
+        ],
+        "info": "Applies across product cards, including Featured collection. Fixed ratios give images equal heights within a row and may crop them. Use section setting keeps each section’s image ratio."
+      },
+      {
+        "type": "select",
         "id": "card_style",
         "options": [
           {

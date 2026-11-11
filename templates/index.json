@@ -16,14 +16,34 @@
           "type": "text",
           "settings": {
             "text": "",
-            "text_style": "caption-with-letter-spacing"
+            "text_style": "caption-with-letter-spacing",
+            "typography_source": "theme",
+            "typography_style": "auto",
+            "custom_font": "jost_n4",
+            "custom_size_desktop": 16,
+            "custom_size_mobile": 15,
+            "custom_line_desktop": 1.8,
+            "custom_line_mobile": 1.8,
+            "custom_spacing_desktop": 0.6,
+            "custom_spacing_mobile": 0.6,
+            "custom_case": "none"
           }
         },
         "heading": {
           "type": "heading",
           "settings": {
             "heading": "Artisan-made pieces handcrafted in Africa",
-            "heading_size": "h2"
+            "heading_size": "h2",
+            "typography_source": "theme",
+            "typography_style": "auto",
+            "custom_font": "sans_serif_n4",
+            "custom_size_desktop": 42,
+            "custom_size_mobile": 32,
+            "custom_line_desktop": 1.3,
+            "custom_line_mobile": 1.3,
+            "custom_spacing_desktop": 0.6,
+            "custom_spacing_mobile": 0.6,
+            "custom_case": "none"
           }
         },
         "button": {
@@ -91,7 +111,7 @@
             "custom_line_mobile": 1.2,
             "custom_spacing_desktop": 0.6,
             "custom_spacing_mobile": 0.6,
-            "custom_case": "none"
+            "custom_case": "capitalize"
           }
         },
         "text_eEqVK6": {
@@ -149,7 +169,17 @@
         "text": {
           "type": "text",
           "settings": {
-            "text": "<p>Empowering women entrepreneurs with every purchase.<br/></p>"
+            "text": "<p>Empowering women entrepreneurs with every purchase.</p>",
+            "typography_source": "custom",
+            "typography_style": "auto",
+            "custom_font": "jost_n4",
+            "custom_size_desktop": 16,
+            "custom_size_mobile": 15,
+            "custom_line_desktop": 1.8,
+            "custom_line_mobile": 1,
+            "custom_spacing_desktop": 0.6,
+            "custom_spacing_mobile": 0.6,
+            "custom_case": "none"
           }
         }
       },

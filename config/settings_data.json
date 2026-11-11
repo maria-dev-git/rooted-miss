@@ -21,6 +21,9 @@
     "spacing_grid_vertical": 12,
     "animations_reveal_on_scroll": false,
     "animations_hover_elements": "default",
+    "button_size_desktop": 18,
+    "button_text_case": "uppercase",
+    "button_width_mode": "fit",
     "buttons_border_thickness": 0,
     "buttons_border_opacity": 100,
     "buttons_radius": 6,
@@ -194,7 +197,7 @@
           "text": "#ffffff",
           "button": "#f0f1f1",
           "button_label": "#00080f",
-          "secondary_button_label": "#ededed",
+          "secondary_button_label": "#F0F1F1",
           "shadow": "#7c4d4d"
         }
       },

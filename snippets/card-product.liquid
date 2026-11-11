@@ -3,7 +3,7 @@
 
   Accepts:
   - card_product: {Object} Product Liquid object (optional)
-  - media_aspect_ratio: {String} Size of the product image card. Values are "square" and "portrait". Default is "square" (optional)
+  - media_aspect_ratio: {String} Size of the product image card. Used when the global product image ratio is "section". Default is "square" (optional)
   - image_shape: {String} Image mask to apply to the product image card. Values are "arch", "blob", "chevronleft", "chevronright", "diamond", "parallelogram", and "round". (optional)
   - show_secondary_image: {Boolean} Show the secondary image on hover. Default: false (optional)
   - show_vendor: {Boolean} Show the product vendor. Default: false
@@ -28,19 +28,30 @@
   {{ 'quick-order-list.css' | asset_url | stylesheet_tag }}
   {{ 'quantity-popover.css' | asset_url | stylesheet_tag }}
 {%- endunless -%}
-{%- if card_product and card_product != empty -%}
-  {%- liquid
-    assign ratio = 1
-    if card_product.featured_media and media_aspect_ratio == 'portrait'
+{%- liquid
+  assign effective_ratio = media_aspect_ratio | default: 'square'
+  assign global_ratio = settings.product_card_image_ratio | default: 'portrait'
+  unless global_ratio == 'section'
+    assign effective_ratio = global_ratio
+  endunless
+  assign ratio = 1
+  case effective_ratio
+    when 'portrait'
       assign ratio = 0.8
-    elsif card_product.featured_media and media_aspect_ratio == 'adapt'
-      assign ratio = card_product.featured_media.aspect_ratio
-    endif
-    if ratio == 0 or ratio == null
-      assign ratio = 1
-    endif
-  -%}
-
+    when 'portrait_tall'
+      assign ratio = 2.0 | divided_by: 3
+    when 'landscape'
+      assign ratio = 4.0 | divided_by: 3
+    when 'wide'
+      assign ratio = 16.0 | divided_by: 9
+    when 'adapt'
+      assign ratio = card_product.featured_media.aspect_ratio | default: 1
+  endcase
+  if ratio <= 0
+    assign ratio = 1
+  endif
+-%}
+{%- if card_product and card_product != empty -%}
   <product-component view-event-payload="{{ card_product | standard_event_data: 'view', context: product_view_context | escape }}">
     <div class="card-wrapper product-card-wrapper underline-links-hover">
       <div
@@ -572,13 +583,7 @@
     </div>
   </product-component>
 {%- else -%}
-  {%- liquid
-    assign ratio = 1
-    assign placeholder = true
-    if media_aspect_ratio == 'portrait'
-      assign ratio = 0.8
-    endif
-  -%}
+  {%- assign placeholder = true -%}
   <div class="card-wrapper product-card-wrapper underline-links-hover">
     <div
       class="
