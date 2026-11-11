@@ -91,7 +91,8 @@
                 {%- when '@app' -%}
                   {% render block %}
                 {%- when 'text' -%}
-                  <p
+                {% render 'block-typography', block: block, section_id: section.id %}
+                  <p id="Typography-{{ section.id }}-{{ block.id }}"
                     class="product__text inline-richtext{% if block.settings.text_style == 'uppercase' %} caption-with-letter-spacing{% elsif block.settings.text_style == 'subtitle' %} subtitle{% endif %}"
                     {{ block.shopify_attributes }}
                   >
@@ -791,6 +792,159 @@
           ],
           "default": "body",
           "label": "t:sections.main-product.blocks.text.settings.text_style.label"
+        },
+        {
+          "type": "header",
+          "content": "Typography"
+        },
+        {
+          "type": "select",
+          "id": "typography_source",
+          "label": "Typography source",
+          "default": "theme",
+          "options": [
+            {
+              "value": "theme",
+              "label": "Theme typography"
+            },
+            {
+              "value": "custom",
+              "label": "Custom typography"
+            }
+          ]
+        },
+        {
+          "type": "select",
+          "id": "typography_style",
+          "label": "Theme typography style",
+          "default": "auto",
+          "options": [
+            {
+              "value": "auto",
+              "label": "Automatic (use block style)"
+            },
+            {
+              "value": "body",
+              "label": "Body"
+            },
+            {
+              "value": "h1",
+              "label": "H1"
+            },
+            {
+              "value": "h2",
+              "label": "H2"
+            },
+            {
+              "value": "h3",
+              "label": "H3"
+            },
+            {
+              "value": "h4",
+              "label": "H4"
+            },
+            {
+              "value": "h5",
+              "label": "H5"
+            },
+            {
+              "value": "h6",
+              "label": "H6"
+            }
+          ],
+          "info": "Used when Theme typography is selected. Automatic follows the heading size or body text settings."
+        },
+        {
+          "type": "paragraph",
+          "content": "The following controls apply only when Custom typography is selected."
+        },
+        {
+          "type": "font_picker",
+          "id": "custom_font",
+          "label": "Font family",
+          "default": "jost_n4"
+        },
+        {
+          "type": "range",
+          "id": "custom_size_desktop",
+          "label": "Desktop font size",
+          "min": 10,
+          "max": 110,
+          "step": 1,
+          "default": 16,
+          "unit": "px"
+        },
+        {
+          "type": "range",
+          "id": "custom_size_mobile",
+          "label": "Mobile font size",
+          "min": 10,
+          "max": 110,
+          "step": 1,
+          "default": 15,
+          "unit": "px"
+        },
+        {
+          "type": "range",
+          "id": "custom_line_desktop",
+          "label": "Desktop line height",
+          "min": 0.8,
+          "max": 2.5,
+          "step": 0.1,
+          "default": 1.8
+        },
+        {
+          "type": "range",
+          "id": "custom_line_mobile",
+          "label": "Mobile line height",
+          "min": 0.8,
+          "max": 2.5,
+          "step": 0.1,
+          "default": 1.8
+        },
+        {
+          "type": "range",
+          "id": "custom_spacing_desktop",
+          "label": "Desktop letter spacing",
+          "min": -2,
+          "max": 5,
+          "step": 0.1,
+          "default": 0.6,
+          "unit": "px"
+        },
+        {
+          "type": "range",
+          "id": "custom_spacing_mobile",
+          "label": "Mobile letter spacing",
+          "min": -2,
+          "max": 5,
+          "step": 0.1,
+          "default": 0.6,
+          "unit": "px"
+        },
+        {
+          "type": "select",
+          "id": "custom_case",
+          "label": "Text case",
+          "default": "none",
+          "options": [
+            {
+              "value": "none",
+              "label": "Original"
+            },
+            {
+              "value": "uppercase",
+              "label": "UPPERCASE"
+            },
+            {
+              "value": "lowercase",
+              "label": "lowercase"
+            },
+            {
+              "value": "capitalize",
+              "label": "Capitalize words"
+            }
+          ]
         }
       ]
     },

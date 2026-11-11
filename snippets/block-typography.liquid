@@ -1,0 +1,54 @@
+{% comment %}
+  Typography for a heading or text block. Automatic mode inherits the existing
+  theme rules. Explicit theme styles reference global responsive variables.
+  Inputs: block, section_id.
+{% endcomment %}
+{%- liquid
+  assign source = block.settings.typography_source | default: 'theme'
+  assign profile = block.settings.typography_style | default: 'auto'
+-%}
+{%- if source == 'custom' or profile != 'auto' -%}
+  {%- style -%}
+    {%- if source == 'custom' -%}
+      {{ block.settings.custom_font | font_face: font_display: 'swap' }}
+      {%- liquid
+        assign font_bold = block.settings.custom_font | font_modify: 'weight', 'bold'
+        assign font_italic = block.settings.custom_font | font_modify: 'style', 'italic'
+        assign font_bold_italic = font_bold | font_modify: 'style', 'italic'
+      -%}
+      {{ font_bold | font_face: font_display: 'swap' }}
+      {{ font_italic | font_face: font_display: 'swap' }}
+      {{ font_bold_italic | font_face: font_display: 'swap' }}
+    {%- endif -%}
+    html body #Typography-{{ section_id }}-{{ block.id }},
+    html body #Typography-{{ section_id }}-{{ block.id }} :is(p, li, h1, h2, h3, h4, h5, h6) {
+      {%- if source == 'custom' -%}
+        font-family: {{ block.settings.custom_font.family | json }}, {{ block.settings.custom_font.fallback_families }};
+        font-style: {{ block.settings.custom_font.style }};
+        font-weight: {{ block.settings.custom_font.weight }};
+        font-size: {{ block.settings.custom_size_mobile }}px;
+        line-height: {{ block.settings.custom_line_mobile }};
+        letter-spacing: {{ block.settings.custom_spacing_mobile }}px;
+        text-transform: {{ block.settings.custom_case }};
+      {%- else -%}
+        font-family: var(--type-{{ profile }}-family);
+        font-style: var(--type-{{ profile }}-style);
+        font-weight: var(--type-{{ profile }}-weight);
+        font-size: var(--type-{{ profile }}-size);
+        line-height: var(--type-{{ profile }}-line);
+        letter-spacing: var(--type-{{ profile }}-spacing);
+        text-transform: var(--type-{{ profile }}-case);
+      {%- endif -%}
+    }
+    {%- if source == 'custom' -%}
+      @media screen and (min-width: 750px) {
+        html body #Typography-{{ section_id }}-{{ block.id }},
+        html body #Typography-{{ section_id }}-{{ block.id }} :is(p, li, h1, h2, h3, h4, h5, h6) {
+          font-size: {{ block.settings.custom_size_desktop }}px;
+          line-height: {{ block.settings.custom_line_desktop }};
+          letter-spacing: {{ block.settings.custom_spacing_desktop }}px;
+        }
+      }
+    {%- endif -%}
+  {%- endstyle -%}
+{%- endif -%}

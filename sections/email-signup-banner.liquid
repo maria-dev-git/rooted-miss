@@ -63,11 +63,13 @@
       {%- for block in section.blocks -%}
         {%- case block.type -%}
           {%- when 'heading' -%}
-            <h2 class="email-signup-banner__heading {{ block.settings.heading_size }}" {{ block.shopify_attributes }}>
+                {% render 'block-typography', block: block, section_id: section.id %}
+            <h2 id="Typography-{{ section.id }}-{{ block.id }}" class="email-signup-banner__heading {{ block.settings.heading_size }}" {{ block.shopify_attributes }}>
               {{ block.settings.heading | escape }}
             </h2>
           {%- when 'paragraph' -%}
-            <div class="newsletter__subheading rte {{ block.settings.text_style }}" {{ block.shopify_attributes }}>
+                {% render 'block-typography', block: block, section_id: section.id %}
+            <div id="Typography-{{ section.id }}-{{ block.id }}" class="newsletter__subheading rte {{ block.settings.text_style }}" {{ block.shopify_attributes }}>
               {{ block.settings.text }}
             </div>
           {%- when 'email_form' -%}
@@ -148,7 +150,9 @@
   "tag": "section",
   "class": "section",
   "enabled_on": {
-    "templates": ["password"]
+    "templates": [
+      "password"
+    ]
   },
   "settings": [
     {
@@ -160,7 +164,7 @@
       "id": "show_background_image",
       "label": "t:sections.email-signup-banner.settings.show_background_image.label",
       "default": true
-    },    
+    },
     {
       "type": "image_picker",
       "id": "image",
@@ -203,7 +207,7 @@
     {
       "type": "header",
       "content": "t:sections.email-signup-banner.settings.content_header.content"
-    },    
+    },
     {
       "type": "select",
       "id": "desktop_content_position",
@@ -267,7 +271,7 @@
       ],
       "default": "center",
       "label": "t:sections.email-signup-banner.settings.desktop_content_alignment.label"
-    },    
+    },
     {
       "type": "checkbox",
       "id": "show_text_box",
@@ -351,6 +355,159 @@
           ],
           "default": "h1",
           "label": "t:sections.all.heading_size.label"
+        },
+        {
+          "type": "header",
+          "content": "Typography"
+        },
+        {
+          "type": "select",
+          "id": "typography_source",
+          "label": "Typography source",
+          "default": "theme",
+          "options": [
+            {
+              "value": "theme",
+              "label": "Theme typography"
+            },
+            {
+              "value": "custom",
+              "label": "Custom typography"
+            }
+          ]
+        },
+        {
+          "type": "select",
+          "id": "typography_style",
+          "label": "Theme typography style",
+          "default": "auto",
+          "options": [
+            {
+              "value": "auto",
+              "label": "Automatic (use block style)"
+            },
+            {
+              "value": "body",
+              "label": "Body"
+            },
+            {
+              "value": "h1",
+              "label": "H1"
+            },
+            {
+              "value": "h2",
+              "label": "H2"
+            },
+            {
+              "value": "h3",
+              "label": "H3"
+            },
+            {
+              "value": "h4",
+              "label": "H4"
+            },
+            {
+              "value": "h5",
+              "label": "H5"
+            },
+            {
+              "value": "h6",
+              "label": "H6"
+            }
+          ],
+          "info": "Used when Theme typography is selected. Automatic follows the heading size or body text settings."
+        },
+        {
+          "type": "paragraph",
+          "content": "The following controls apply only when Custom typography is selected."
+        },
+        {
+          "type": "font_picker",
+          "id": "custom_font",
+          "label": "Font family",
+          "default": "sans_serif_n4"
+        },
+        {
+          "type": "range",
+          "id": "custom_size_desktop",
+          "label": "Desktop font size",
+          "min": 10,
+          "max": 110,
+          "step": 1,
+          "default": 42,
+          "unit": "px"
+        },
+        {
+          "type": "range",
+          "id": "custom_size_mobile",
+          "label": "Mobile font size",
+          "min": 10,
+          "max": 110,
+          "step": 1,
+          "default": 32,
+          "unit": "px"
+        },
+        {
+          "type": "range",
+          "id": "custom_line_desktop",
+          "label": "Desktop line height",
+          "min": 0.8,
+          "max": 2.5,
+          "step": 0.1,
+          "default": 1.3
+        },
+        {
+          "type": "range",
+          "id": "custom_line_mobile",
+          "label": "Mobile line height",
+          "min": 0.8,
+          "max": 2.5,
+          "step": 0.1,
+          "default": 1.3
+        },
+        {
+          "type": "range",
+          "id": "custom_spacing_desktop",
+          "label": "Desktop letter spacing",
+          "min": -2,
+          "max": 5,
+          "step": 0.1,
+          "default": 0.6,
+          "unit": "px"
+        },
+        {
+          "type": "range",
+          "id": "custom_spacing_mobile",
+          "label": "Mobile letter spacing",
+          "min": -2,
+          "max": 5,
+          "step": 0.1,
+          "default": 0.6,
+          "unit": "px"
+        },
+        {
+          "type": "select",
+          "id": "custom_case",
+          "label": "Text case",
+          "default": "none",
+          "options": [
+            {
+              "value": "none",
+              "label": "Original"
+            },
+            {
+              "value": "uppercase",
+              "label": "UPPERCASE"
+            },
+            {
+              "value": "lowercase",
+              "label": "lowercase"
+            },
+            {
+              "value": "capitalize",
+              "label": "Capitalize words"
+            }
+          ]
         }
       ]
     },
@@ -380,6 +537,159 @@
           ],
           "default": "body",
           "label": "t:sections.email-signup-banner.blocks.paragraph.settings.text_style.label"
+        },
+        {
+          "type": "header",
+          "content": "Typography"
+        },
+        {
+          "type": "select",
+          "id": "typography_source",
+          "label": "Typography source",
+          "default": "theme",
+          "options": [
+            {
+              "value": "theme",
+              "label": "Theme typography"
+            },
+            {
+              "value": "custom",
+              "label": "Custom typography"
+            }
+          ]
+        },
+        {
+          "type": "select",
+          "id": "typography_style",
+          "label": "Theme typography style",
+          "default": "auto",
+          "options": [
+            {
+              "value": "auto",
+              "label": "Automatic (use block style)"
+            },
+            {
+              "value": "body",
+              "label": "Body"
+            },
+            {
+              "value": "h1",
+              "label": "H1"
+            },
+            {
+              "value": "h2",
+              "label": "H2"
+            },
+            {
+              "value": "h3",
+              "label": "H3"
+            },
+            {
+              "value": "h4",
+              "label": "H4"
+            },
+            {
+              "value": "h5",
+              "label": "H5"
+            },
+            {
+              "value": "h6",
+              "label": "H6"
+            }
+          ],
+          "info": "Used when Theme typography is selected. Automatic follows the heading size or body text settings."
+        },
+        {
+          "type": "paragraph",
+          "content": "The following controls apply only when Custom typography is selected."
+        },
+        {
+          "type": "font_picker",
+          "id": "custom_font",
+          "label": "Font family",
+          "default": "jost_n4"
+        },
+        {
+          "type": "range",
+          "id": "custom_size_desktop",
+          "label": "Desktop font size",
+          "min": 10,
+          "max": 110,
+          "step": 1,
+          "default": 16,
+          "unit": "px"
+        },
+        {
+          "type": "range",
+          "id": "custom_size_mobile",
+          "label": "Mobile font size",
+          "min": 10,
+          "max": 110,
+          "step": 1,
+          "default": 15,
+          "unit": "px"
+        },
+        {
+          "type": "range",
+          "id": "custom_line_desktop",
+          "label": "Desktop line height",
+          "min": 0.8,
+          "max": 2.5,
+          "step": 0.1,
+          "default": 1.8
+        },
+        {
+          "type": "range",
+          "id": "custom_line_mobile",
+          "label": "Mobile line height",
+          "min": 0.8,
+          "max": 2.5,
+          "step": 0.1,
+          "default": 1.8
+        },
+        {
+          "type": "range",
+          "id": "custom_spacing_desktop",
+          "label": "Desktop letter spacing",
+          "min": -2,
+          "max": 5,
+          "step": 0.1,
+          "default": 0.6,
+          "unit": "px"
+        },
+        {
+          "type": "range",
+          "id": "custom_spacing_mobile",
+          "label": "Mobile letter spacing",
+          "min": -2,
+          "max": 5,
+          "step": 0.1,
+          "default": 0.6,
+          "unit": "px"
+        },
+        {
+          "type": "select",
+          "id": "custom_case",
+          "label": "Text case",
+          "default": "none",
+          "options": [
+            {
+              "value": "none",
+              "label": "Original"
+            },
+            {
+              "value": "uppercase",
+              "label": "UPPERCASE"
+            },
+            {
+              "value": "lowercase",
+              "label": "lowercase"
+            },
+            {
+              "value": "capitalize",
+              "label": "Capitalize words"
+            }
+          ]
         }
       ]
     },

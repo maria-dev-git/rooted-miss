@@ -31,6 +31,17 @@
           "type": "description",
           "settings": {}
         },
+        "quantity_selector_hWtVnD": {
+          "type": "quantity_selector",
+          "settings": {}
+        },
+        "buy_buttons_kJV43P": {
+          "type": "buy_buttons",
+          "settings": {
+            "show_dynamic_checkout": true,
+            "show_gift_card_recipient": true
+          }
+        },
         "collapsible-row-0": {
           "type": "collapsible_tab",
           "settings": {
@@ -46,6 +57,8 @@
         "price",
         "variant_picker_MFgxtM",
         "description",
+        "quantity_selector_hWtVnD",
+        "buy_buttons_kJV43P",
         "collapsible-row-0"
       ],
       "settings": {

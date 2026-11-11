@@ -1,0 +1,314 @@
+{% comment %}
+  Global typography. Visual heading classes override semantic tag defaults.
+  Keep the theme's rem scale intact; custom type sizes use exact pixel values.
+{% endcomment %}
+{%- style -%}
+  {{ settings.type_h1_font | font_face: font_display: 'swap' }}
+  {%- assign h1_bold = settings.type_h1_font | font_modify: 'weight', 'bold' -%}
+  {{ h1_bold | font_face: font_display: 'swap' }}
+  {%- assign h1_italic = settings.type_h1_font | font_modify: 'style', 'italic' -%}
+  {{ h1_italic | font_face: font_display: 'swap' }}
+  {{ settings.type_h2_font | font_face: font_display: 'swap' }}
+  {%- assign h2_bold = settings.type_h2_font | font_modify: 'weight', 'bold' -%}
+  {{ h2_bold | font_face: font_display: 'swap' }}
+  {%- assign h2_italic = settings.type_h2_font | font_modify: 'style', 'italic' -%}
+  {{ h2_italic | font_face: font_display: 'swap' }}
+  {{ settings.type_h3_font | font_face: font_display: 'swap' }}
+  {%- assign h3_bold = settings.type_h3_font | font_modify: 'weight', 'bold' -%}
+  {{ h3_bold | font_face: font_display: 'swap' }}
+  {%- assign h3_italic = settings.type_h3_font | font_modify: 'style', 'italic' -%}
+  {{ h3_italic | font_face: font_display: 'swap' }}
+  {{ settings.type_h4_font | font_face: font_display: 'swap' }}
+  {%- assign h4_bold = settings.type_h4_font | font_modify: 'weight', 'bold' -%}
+  {{ h4_bold | font_face: font_display: 'swap' }}
+  {%- assign h4_italic = settings.type_h4_font | font_modify: 'style', 'italic' -%}
+  {{ h4_italic | font_face: font_display: 'swap' }}
+  {{ settings.type_h5_font | font_face: font_display: 'swap' }}
+  {%- assign h5_bold = settings.type_h5_font | font_modify: 'weight', 'bold' -%}
+  {{ h5_bold | font_face: font_display: 'swap' }}
+  {%- assign h5_italic = settings.type_h5_font | font_modify: 'style', 'italic' -%}
+  {{ h5_italic | font_face: font_display: 'swap' }}
+  {{ settings.type_h6_font | font_face: font_display: 'swap' }}
+  {%- assign h6_bold = settings.type_h6_font | font_modify: 'weight', 'bold' -%}
+  {{ h6_bold | font_face: font_display: 'swap' }}
+  {%- assign h6_italic = settings.type_h6_font | font_modify: 'style', 'italic' -%}
+  {{ h6_italic | font_face: font_display: 'swap' }}
+  :root {
+    --type-body-family: {{ settings.type_body_font.family | json }}, {{ settings.type_body_font.fallback_families }};
+    --type-body-style: {{ settings.type_body_font.style }};
+    --type-body-weight: {{ settings.type_body_font.weight }};
+    --type-body-case: {{ settings.type_body_case }};
+    --type-body-size: {{ settings.type_body_size_mobile }}px;
+    --type-body-line: {{ settings.type_body_line_mobile }};
+    --type-body-spacing: {{ settings.type_body_spacing_mobile }}px;
+    --type-h1-family: {{ settings.type_h1_font.family | json }}, {{ settings.type_h1_font.fallback_families }};
+    --type-h1-style: {{ settings.type_h1_font.style }};
+    --type-h1-weight: {{ settings.type_h1_font.weight }};
+    --type-h1-case: {{ settings.type_h1_case }};
+    --type-h1-size: {{ settings.type_h1_size_mobile }}px;
+    --type-h1-line: {{ settings.type_h1_line_mobile }};
+    --type-h1-spacing: {{ settings.type_h1_spacing_mobile }}px;
+    --type-h2-family: {{ settings.type_h2_font.family | json }}, {{ settings.type_h2_font.fallback_families }};
+    --type-h2-style: {{ settings.type_h2_font.style }};
+    --type-h2-weight: {{ settings.type_h2_font.weight }};
+    --type-h2-case: {{ settings.type_h2_case }};
+    --type-h2-size: {{ settings.type_h2_size_mobile }}px;
+    --type-h2-line: {{ settings.type_h2_line_mobile }};
+    --type-h2-spacing: {{ settings.type_h2_spacing_mobile }}px;
+    --type-h3-family: {{ settings.type_h3_font.family | json }}, {{ settings.type_h3_font.fallback_families }};
+    --type-h3-style: {{ settings.type_h3_font.style }};
+    --type-h3-weight: {{ settings.type_h3_font.weight }};
+    --type-h3-case: {{ settings.type_h3_case }};
+    --type-h3-size: {{ settings.type_h3_size_mobile }}px;
+    --type-h3-line: {{ settings.type_h3_line_mobile }};
+    --type-h3-spacing: {{ settings.type_h3_spacing_mobile }}px;
+    --type-h4-family: {{ settings.type_h4_font.family | json }}, {{ settings.type_h4_font.fallback_families }};
+    --type-h4-style: {{ settings.type_h4_font.style }};
+    --type-h4-weight: {{ settings.type_h4_font.weight }};
+    --type-h4-case: {{ settings.type_h4_case }};
+    --type-h4-size: {{ settings.type_h4_size_mobile }}px;
+    --type-h4-line: {{ settings.type_h4_line_mobile }};
+    --type-h4-spacing: {{ settings.type_h4_spacing_mobile }}px;
+    --type-h5-family: {{ settings.type_h5_font.family | json }}, {{ settings.type_h5_font.fallback_families }};
+    --type-h5-style: {{ settings.type_h5_font.style }};
+    --type-h5-weight: {{ settings.type_h5_font.weight }};
+    --type-h5-case: {{ settings.type_h5_case }};
+    --type-h5-size: {{ settings.type_h5_size_mobile }}px;
+    --type-h5-line: {{ settings.type_h5_line_mobile }};
+    --type-h5-spacing: {{ settings.type_h5_spacing_mobile }}px;
+    --type-h6-family: {{ settings.type_h6_font.family | json }}, {{ settings.type_h6_font.fallback_families }};
+    --type-h6-style: {{ settings.type_h6_font.style }};
+    --type-h6-weight: {{ settings.type_h6_font.weight }};
+    --type-h6-case: {{ settings.type_h6_case }};
+    --type-h6-size: {{ settings.type_h6_size_mobile }}px;
+    --type-h6-line: {{ settings.type_h6_line_mobile }};
+    --type-h6-spacing: {{ settings.type_h6_spacing_mobile }}px;
+    --font-heading-family: var(--type-h1-family);
+    --font-heading-style: var(--type-h1-style);
+    --font-heading-weight: var(--type-h1-weight);
+  }
+  @media screen and (min-width: 750px) {
+    :root {
+      --type-body-size: {{ settings.type_body_size_desktop }}px;
+      --type-body-line: {{ settings.type_body_line_desktop }};
+      --type-body-spacing: {{ settings.type_body_spacing_desktop }}px;
+      --type-h1-size: {{ settings.type_h1_size_desktop }}px;
+      --type-h1-line: {{ settings.type_h1_line_desktop }};
+      --type-h1-spacing: {{ settings.type_h1_spacing_desktop }}px;
+      --type-h2-size: {{ settings.type_h2_size_desktop }}px;
+      --type-h2-line: {{ settings.type_h2_line_desktop }};
+      --type-h2-spacing: {{ settings.type_h2_spacing_desktop }}px;
+      --type-h3-size: {{ settings.type_h3_size_desktop }}px;
+      --type-h3-line: {{ settings.type_h3_line_desktop }};
+      --type-h3-spacing: {{ settings.type_h3_spacing_desktop }}px;
+      --type-h4-size: {{ settings.type_h4_size_desktop }}px;
+      --type-h4-line: {{ settings.type_h4_line_desktop }};
+      --type-h4-spacing: {{ settings.type_h4_spacing_desktop }}px;
+      --type-h5-size: {{ settings.type_h5_size_desktop }}px;
+      --type-h5-line: {{ settings.type_h5_line_desktop }};
+      --type-h5-spacing: {{ settings.type_h5_spacing_desktop }}px;
+      --type-h6-size: {{ settings.type_h6_size_desktop }}px;
+      --type-h6-line: {{ settings.type_h6_line_desktop }};
+      --type-h6-spacing: {{ settings.type_h6_spacing_desktop }}px;
+    }
+  }
+  html body,
+  html body .rte,
+  html body .banner__text,
+  html body .text-body {
+    font-family: var(--type-body-family);
+    font-style: var(--type-body-style);
+    font-weight: var(--type-body-weight);
+    font-size: var(--type-body-size);
+    line-height: var(--type-body-line);
+    letter-spacing: var(--type-body-spacing);
+    text-transform: var(--type-body-case);
+  }
+  html body h1 {
+    font-family: var(--type-h1-family);
+    font-style: var(--type-h1-style);
+    font-weight: var(--type-h1-weight);
+    font-size: var(--type-h1-size);
+    line-height: var(--type-h1-line);
+    letter-spacing: var(--type-h1-spacing);
+    text-transform: var(--type-h1-case);
+  }
+  html body h2 {
+    font-family: var(--type-h2-family);
+    font-style: var(--type-h2-style);
+    font-weight: var(--type-h2-weight);
+    font-size: var(--type-h2-size);
+    line-height: var(--type-h2-line);
+    letter-spacing: var(--type-h2-spacing);
+    text-transform: var(--type-h2-case);
+  }
+  html body h3 {
+    font-family: var(--type-h3-family);
+    font-style: var(--type-h3-style);
+    font-weight: var(--type-h3-weight);
+    font-size: var(--type-h3-size);
+    line-height: var(--type-h3-line);
+    letter-spacing: var(--type-h3-spacing);
+    text-transform: var(--type-h3-case);
+  }
+  html body h4 {
+    font-family: var(--type-h4-family);
+    font-style: var(--type-h4-style);
+    font-weight: var(--type-h4-weight);
+    font-size: var(--type-h4-size);
+    line-height: var(--type-h4-line);
+    letter-spacing: var(--type-h4-spacing);
+    text-transform: var(--type-h4-case);
+  }
+  html body h5 {
+    font-family: var(--type-h5-family);
+    font-style: var(--type-h5-style);
+    font-weight: var(--type-h5-weight);
+    font-size: var(--type-h5-size);
+    line-height: var(--type-h5-line);
+    letter-spacing: var(--type-h5-spacing);
+    text-transform: var(--type-h5-case);
+  }
+  html body h6 {
+    font-family: var(--type-h6-family);
+    font-style: var(--type-h6-style);
+    font-weight: var(--type-h6-weight);
+    font-size: var(--type-h6-size);
+    line-height: var(--type-h6-line);
+    letter-spacing: var(--type-h6-spacing);
+    text-transform: var(--type-h6-case);
+  }
+  html body .h1 {
+    font-family: var(--type-h1-family);
+    font-style: var(--type-h1-style);
+    font-weight: var(--type-h1-weight);
+    font-size: var(--type-h1-size);
+    line-height: var(--type-h1-line);
+    letter-spacing: var(--type-h1-spacing);
+    text-transform: var(--type-h1-case);
+  }
+  html body .h2 {
+    font-family: var(--type-h2-family);
+    font-style: var(--type-h2-style);
+    font-weight: var(--type-h2-weight);
+    font-size: var(--type-h2-size);
+    line-height: var(--type-h2-line);
+    letter-spacing: var(--type-h2-spacing);
+    text-transform: var(--type-h2-case);
+  }
+  html body .h3 {
+    font-family: var(--type-h3-family);
+    font-style: var(--type-h3-style);
+    font-weight: var(--type-h3-weight);
+    font-size: var(--type-h3-size);
+    line-height: var(--type-h3-line);
+    letter-spacing: var(--type-h3-spacing);
+    text-transform: var(--type-h3-case);
+  }
+  html body .h4 {
+    font-family: var(--type-h4-family);
+    font-style: var(--type-h4-style);
+    font-weight: var(--type-h4-weight);
+    font-size: var(--type-h4-size);
+    line-height: var(--type-h4-line);
+    letter-spacing: var(--type-h4-spacing);
+    text-transform: var(--type-h4-case);
+  }
+  html body .h5 {
+    font-family: var(--type-h5-family);
+    font-style: var(--type-h5-style);
+    font-weight: var(--type-h5-weight);
+    font-size: var(--type-h5-size);
+    line-height: var(--type-h5-line);
+    letter-spacing: var(--type-h5-spacing);
+    text-transform: var(--type-h5-case);
+  }
+  html body .h6 {
+    font-family: var(--type-h6-family);
+    font-style: var(--type-h6-style);
+    font-weight: var(--type-h6-weight);
+    font-size: var(--type-h6-size);
+    line-height: var(--type-h6-line);
+    letter-spacing: var(--type-h6-spacing);
+    text-transform: var(--type-h6-case);
+  }
+  html body .h0 {
+    font-family: var(--type-h1-family);
+    font-style: var(--type-h1-style);
+    font-weight: var(--type-h1-weight);
+    font-size: var(--type-h1-size);
+    line-height: var(--type-h1-line);
+    letter-spacing: var(--type-h1-spacing);
+    text-transform: var(--type-h1-case);
+    font-size: calc(var(--type-h1-size) * 1.3);
+  }
+  html body .hxl {
+    font-family: var(--type-h1-family);
+    font-style: var(--type-h1-style);
+    font-weight: var(--type-h1-weight);
+    font-size: var(--type-h1-size);
+    line-height: var(--type-h1-line);
+    letter-spacing: var(--type-h1-spacing);
+    text-transform: var(--type-h1-case);
+    font-size: calc(var(--type-h1-size) * 1.55);
+  }
+  html body .hxxl {
+    font-family: var(--type-h1-family);
+    font-style: var(--type-h1-style);
+    font-weight: var(--type-h1-weight);
+    font-size: var(--type-h1-size);
+    line-height: var(--type-h1-line);
+    letter-spacing: var(--type-h1-spacing);
+    text-transform: var(--type-h1-case);
+    font-size: calc(var(--type-h1-size) * 1.8);
+  }
+
+  /* Global button typography; icon-only controls keep their existing styles. */
+  {{ settings.button_font_mobile | font_face: font_display: 'swap' }}
+  {{ settings.button_font_desktop | font_face: font_display: 'swap' }}
+  html body .button,
+  html body .button-label,
+  html body .shopify-challenge__button,
+  html body .customer button,
+  html body button.shopify-payment-button__button--unbranded {
+    font-family: {{ settings.button_font_mobile.family | json }}, {{ settings.button_font_mobile.fallback_families }};
+    font-style: {{ settings.button_font_mobile.style }};
+    font-weight: {{ settings.button_font_mobile.weight }};
+    font-size: {{ settings.button_size_mobile }}px;
+    text-transform: {{ settings.button_text_case }};
+  }
+  @media screen and (min-width: 750px) {
+  html body .button,
+  html body .button-label,
+  html body .shopify-challenge__button,
+  html body .customer button,
+  html body button.shopify-payment-button__button--unbranded {
+    font-family: {{ settings.button_font_desktop.family | json }}, {{ settings.button_font_desktop.fallback_families }};
+    font-style: {{ settings.button_font_desktop.style }};
+    font-weight: {{ settings.button_font_desktop.weight }};
+    font-size: {{ settings.button_size_desktop }}px;
+  }
+  }
+
+  /* Shared dimensions for theme CTA buttons, excluding icon controls. */
+  html body .button,
+  html body .shopify-challenge__button,
+  html body .customer button,
+  html body button.shopify-payment-button__button--unbranded {
+    box-sizing: border-box;
+    {% if settings.button_width_mode == 'fixed' %}
+      width: {{ settings.button_fixed_width }}px;
+    {% else %}
+      width: fit-content;
+    {% endif %}
+    max-width: 100%;
+    min-width: 0;
+    min-height: 0;
+    flex-grow: 0;
+    flex-shrink: 1;
+    padding-block: {{ settings.button_padding_block }}px;
+    padding-inline: {{ settings.button_padding_inline }}px;
+    white-space: normal;
+    overflow-wrap: anywhere;
+  }
+{%- endstyle -%}

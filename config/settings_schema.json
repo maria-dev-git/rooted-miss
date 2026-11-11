@@ -143,6 +143,648 @@
         "unit": "%",
         "label": "t:settings_schema.typography.settings.body_scale.label",
         "default": 100
+      },
+      {
+        "type": "paragraph",
+        "content": "The controls below set exact H1–H6 and body sizes. Mobile applies below 750px. Line height is a multiplier of font size; letter spacing controls the space between characters. These sizes override the legacy scale controls above. Large display sizes use H1 typography with larger size ratios."
+      },
+      {
+        "type": "header",
+        "content": "Body text"
+      },
+      {
+        "type": "range",
+        "id": "type_body_size_desktop",
+        "label": "Desktop font size",
+        "min": 10,
+        "max": 110,
+        "step": 1,
+        "default": 16,
+        "unit": "px"
+      },
+      {
+        "type": "range",
+        "id": "type_body_size_mobile",
+        "label": "Mobile font size",
+        "min": 10,
+        "max": 110,
+        "step": 1,
+        "default": 15,
+        "unit": "px"
+      },
+      {
+        "type": "range",
+        "id": "type_body_line_desktop",
+        "label": "Desktop line height",
+        "min": 0.8,
+        "max": 2.5,
+        "step": 0.1,
+        "default": 1.8
+      },
+      {
+        "type": "range",
+        "id": "type_body_line_mobile",
+        "label": "Mobile line height",
+        "min": 0.8,
+        "max": 2.5,
+        "step": 0.1,
+        "default": 1.8
+      },
+      {
+        "type": "range",
+        "id": "type_body_spacing_desktop",
+        "label": "Desktop letter spacing",
+        "min": -2,
+        "max": 5,
+        "step": 0.1,
+        "default": 0.6,
+        "unit": "px"
+      },
+      {
+        "type": "range",
+        "id": "type_body_spacing_mobile",
+        "label": "Mobile letter spacing",
+        "min": -2,
+        "max": 5,
+        "step": 0.1,
+        "default": 0.6,
+        "unit": "px"
+      },
+      {
+        "type": "select",
+        "id": "type_body_case",
+        "label": "Text case",
+        "options": [
+          {
+            "value": "none",
+            "label": "Original"
+          },
+          {
+            "value": "uppercase",
+            "label": "UPPERCASE"
+          },
+          {
+            "value": "lowercase",
+            "label": "lowercase"
+          },
+          {
+            "value": "capitalize",
+            "label": "Capitalize words"
+          }
+        ],
+        "default": "none"
+      },
+      {
+        "type": "header",
+        "content": "H1"
+      },
+      {
+        "type": "font_picker",
+        "id": "type_h1_font",
+        "label": "H1 font family",
+        "default": "sans_serif_n4"
+      },
+      {
+        "type": "range",
+        "id": "type_h1_size_desktop",
+        "label": "Desktop font size",
+        "min": 10,
+        "max": 110,
+        "step": 1,
+        "default": 42,
+        "unit": "px"
+      },
+      {
+        "type": "range",
+        "id": "type_h1_size_mobile",
+        "label": "Mobile font size",
+        "min": 10,
+        "max": 110,
+        "step": 1,
+        "default": 32,
+        "unit": "px"
+      },
+      {
+        "type": "range",
+        "id": "type_h1_line_desktop",
+        "label": "Desktop line height",
+        "min": 0.8,
+        "max": 2.5,
+        "step": 0.1,
+        "default": 1.3
+      },
+      {
+        "type": "range",
+        "id": "type_h1_line_mobile",
+        "label": "Mobile line height",
+        "min": 0.8,
+        "max": 2.5,
+        "step": 0.1,
+        "default": 1.3
+      },
+      {
+        "type": "range",
+        "id": "type_h1_spacing_desktop",
+        "label": "Desktop letter spacing",
+        "min": -2,
+        "max": 5,
+        "step": 0.1,
+        "default": 0.6,
+        "unit": "px"
+      },
+      {
+        "type": "range",
+        "id": "type_h1_spacing_mobile",
+        "label": "Mobile letter spacing",
+        "min": -2,
+        "max": 5,
+        "step": 0.1,
+        "default": 0.6,
+        "unit": "px"
+      },
+      {
+        "type": "select",
+        "id": "type_h1_case",
+        "label": "Text case",
+        "options": [
+          {
+            "value": "none",
+            "label": "Original"
+          },
+          {
+            "value": "uppercase",
+            "label": "UPPERCASE"
+          },
+          {
+            "value": "lowercase",
+            "label": "lowercase"
+          },
+          {
+            "value": "capitalize",
+            "label": "Capitalize words"
+          }
+        ],
+        "default": "none"
+      },
+      {
+        "type": "header",
+        "content": "H2"
+      },
+      {
+        "type": "font_picker",
+        "id": "type_h2_font",
+        "label": "H2 font family",
+        "default": "sans_serif_n4"
+      },
+      {
+        "type": "range",
+        "id": "type_h2_size_desktop",
+        "label": "Desktop font size",
+        "min": 10,
+        "max": 110,
+        "step": 1,
+        "default": 25,
+        "unit": "px"
+      },
+      {
+        "type": "range",
+        "id": "type_h2_size_mobile",
+        "label": "Mobile font size",
+        "min": 10,
+        "max": 110,
+        "step": 1,
+        "default": 21,
+        "unit": "px"
+      },
+      {
+        "type": "range",
+        "id": "type_h2_line_desktop",
+        "label": "Desktop line height",
+        "min": 0.8,
+        "max": 2.5,
+        "step": 0.1,
+        "default": 1.3
+      },
+      {
+        "type": "range",
+        "id": "type_h2_line_mobile",
+        "label": "Mobile line height",
+        "min": 0.8,
+        "max": 2.5,
+        "step": 0.1,
+        "default": 1.3
+      },
+      {
+        "type": "range",
+        "id": "type_h2_spacing_desktop",
+        "label": "Desktop letter spacing",
+        "min": -2,
+        "max": 5,
+        "step": 0.1,
+        "default": 0.6,
+        "unit": "px"
+      },
+      {
+        "type": "range",
+        "id": "type_h2_spacing_mobile",
+        "label": "Mobile letter spacing",
+        "min": -2,
+        "max": 5,
+        "step": 0.1,
+        "default": 0.6,
+        "unit": "px"
+      },
+      {
+        "type": "select",
+        "id": "type_h2_case",
+        "label": "Text case",
+        "options": [
+          {
+            "value": "none",
+            "label": "Original"
+          },
+          {
+            "value": "uppercase",
+            "label": "UPPERCASE"
+          },
+          {
+            "value": "lowercase",
+            "label": "lowercase"
+          },
+          {
+            "value": "capitalize",
+            "label": "Capitalize words"
+          }
+        ],
+        "default": "none"
+      },
+      {
+        "type": "header",
+        "content": "H3"
+      },
+      {
+        "type": "font_picker",
+        "id": "type_h3_font",
+        "label": "H3 font family",
+        "default": "sans_serif_n4"
+      },
+      {
+        "type": "range",
+        "id": "type_h3_size_desktop",
+        "label": "Desktop font size",
+        "min": 10,
+        "max": 110,
+        "step": 1,
+        "default": 19,
+        "unit": "px"
+      },
+      {
+        "type": "range",
+        "id": "type_h3_size_mobile",
+        "label": "Mobile font size",
+        "min": 10,
+        "max": 110,
+        "step": 1,
+        "default": 18,
+        "unit": "px"
+      },
+      {
+        "type": "range",
+        "id": "type_h3_line_desktop",
+        "label": "Desktop line height",
+        "min": 0.8,
+        "max": 2.5,
+        "step": 0.1,
+        "default": 1.3
+      },
+      {
+        "type": "range",
+        "id": "type_h3_line_mobile",
+        "label": "Mobile line height",
+        "min": 0.8,
+        "max": 2.5,
+        "step": 0.1,
+        "default": 1.3
+      },
+      {
+        "type": "range",
+        "id": "type_h3_spacing_desktop",
+        "label": "Desktop letter spacing",
+        "min": -2,
+        "max": 5,
+        "step": 0.1,
+        "default": 0.6,
+        "unit": "px"
+      },
+      {
+        "type": "range",
+        "id": "type_h3_spacing_mobile",
+        "label": "Mobile letter spacing",
+        "min": -2,
+        "max": 5,
+        "step": 0.1,
+        "default": 0.6,
+        "unit": "px"
+      },
+      {
+        "type": "select",
+        "id": "type_h3_case",
+        "label": "Text case",
+        "options": [
+          {
+            "value": "none",
+            "label": "Original"
+          },
+          {
+            "value": "uppercase",
+            "label": "UPPERCASE"
+          },
+          {
+            "value": "lowercase",
+            "label": "lowercase"
+          },
+          {
+            "value": "capitalize",
+            "label": "Capitalize words"
+          }
+        ],
+        "default": "none"
+      },
+      {
+        "type": "header",
+        "content": "H4"
+      },
+      {
+        "type": "font_picker",
+        "id": "type_h4_font",
+        "label": "H4 font family",
+        "default": "sans_serif_n4"
+      },
+      {
+        "type": "range",
+        "id": "type_h4_size_desktop",
+        "label": "Desktop font size",
+        "min": 10,
+        "max": 110,
+        "step": 1,
+        "default": 16,
+        "unit": "px"
+      },
+      {
+        "type": "range",
+        "id": "type_h4_size_mobile",
+        "label": "Mobile font size",
+        "min": 10,
+        "max": 110,
+        "step": 1,
+        "default": 16,
+        "unit": "px"
+      },
+      {
+        "type": "range",
+        "id": "type_h4_line_desktop",
+        "label": "Desktop line height",
+        "min": 0.8,
+        "max": 2.5,
+        "step": 0.1,
+        "default": 1.3
+      },
+      {
+        "type": "range",
+        "id": "type_h4_line_mobile",
+        "label": "Mobile line height",
+        "min": 0.8,
+        "max": 2.5,
+        "step": 0.1,
+        "default": 1.3
+      },
+      {
+        "type": "range",
+        "id": "type_h4_spacing_desktop",
+        "label": "Desktop letter spacing",
+        "min": -2,
+        "max": 5,
+        "step": 0.1,
+        "default": 0.6,
+        "unit": "px"
+      },
+      {
+        "type": "range",
+        "id": "type_h4_spacing_mobile",
+        "label": "Mobile letter spacing",
+        "min": -2,
+        "max": 5,
+        "step": 0.1,
+        "default": 0.6,
+        "unit": "px"
+      },
+      {
+        "type": "select",
+        "id": "type_h4_case",
+        "label": "Text case",
+        "options": [
+          {
+            "value": "none",
+            "label": "Original"
+          },
+          {
+            "value": "uppercase",
+            "label": "UPPERCASE"
+          },
+          {
+            "value": "lowercase",
+            "label": "lowercase"
+          },
+          {
+            "value": "capitalize",
+            "label": "Capitalize words"
+          }
+        ],
+        "default": "none"
+      },
+      {
+        "type": "header",
+        "content": "H5"
+      },
+      {
+        "type": "font_picker",
+        "id": "type_h5_font",
+        "label": "H5 font family",
+        "default": "sans_serif_n4"
+      },
+      {
+        "type": "range",
+        "id": "type_h5_size_desktop",
+        "label": "Desktop font size",
+        "min": 10,
+        "max": 110,
+        "step": 1,
+        "default": 14,
+        "unit": "px"
+      },
+      {
+        "type": "range",
+        "id": "type_h5_size_mobile",
+        "label": "Mobile font size",
+        "min": 10,
+        "max": 110,
+        "step": 1,
+        "default": 13,
+        "unit": "px"
+      },
+      {
+        "type": "range",
+        "id": "type_h5_line_desktop",
+        "label": "Desktop line height",
+        "min": 0.8,
+        "max": 2.5,
+        "step": 0.1,
+        "default": 1.3
+      },
+      {
+        "type": "range",
+        "id": "type_h5_line_mobile",
+        "label": "Mobile line height",
+        "min": 0.8,
+        "max": 2.5,
+        "step": 0.1,
+        "default": 1.3
+      },
+      {
+        "type": "range",
+        "id": "type_h5_spacing_desktop",
+        "label": "Desktop letter spacing",
+        "min": -2,
+        "max": 5,
+        "step": 0.1,
+        "default": 0.6,
+        "unit": "px"
+      },
+      {
+        "type": "range",
+        "id": "type_h5_spacing_mobile",
+        "label": "Mobile letter spacing",
+        "min": -2,
+        "max": 5,
+        "step": 0.1,
+        "default": 0.6,
+        "unit": "px"
+      },
+      {
+        "type": "select",
+        "id": "type_h5_case",
+        "label": "Text case",
+        "options": [
+          {
+            "value": "none",
+            "label": "Original"
+          },
+          {
+            "value": "uppercase",
+            "label": "UPPERCASE"
+          },
+          {
+            "value": "lowercase",
+            "label": "lowercase"
+          },
+          {
+            "value": "capitalize",
+            "label": "Capitalize words"
+          }
+        ],
+        "default": "none"
+      },
+      {
+        "type": "header",
+        "content": "H6"
+      },
+      {
+        "type": "font_picker",
+        "id": "type_h6_font",
+        "label": "H6 font family",
+        "default": "sans_serif_n4"
+      },
+      {
+        "type": "range",
+        "id": "type_h6_size_desktop",
+        "label": "Desktop font size",
+        "min": 10,
+        "max": 110,
+        "step": 1,
+        "default": 11,
+        "unit": "px"
+      },
+      {
+        "type": "range",
+        "id": "type_h6_size_mobile",
+        "label": "Mobile font size",
+        "min": 10,
+        "max": 110,
+        "step": 1,
+        "default": 11,
+        "unit": "px"
+      },
+      {
+        "type": "range",
+        "id": "type_h6_line_desktop",
+        "label": "Desktop line height",
+        "min": 0.8,
+        "max": 2.5,
+        "step": 0.1,
+        "default": 1.3
+      },
+      {
+        "type": "range",
+        "id": "type_h6_line_mobile",
+        "label": "Mobile line height",
+        "min": 0.8,
+        "max": 2.5,
+        "step": 0.1,
+        "default": 1.3
+      },
+      {
+        "type": "range",
+        "id": "type_h6_spacing_desktop",
+        "label": "Desktop letter spacing",
+        "min": -2,
+        "max": 5,
+        "step": 0.1,
+        "default": 0.6,
+        "unit": "px"
+      },
+      {
+        "type": "range",
+        "id": "type_h6_spacing_mobile",
+        "label": "Mobile letter spacing",
+        "min": -2,
+        "max": 5,
+        "step": 0.1,
+        "default": 0.6,
+        "unit": "px"
+      },
+      {
+        "type": "select",
+        "id": "type_h6_case",
+        "label": "Text case",
+        "options": [
+          {
+            "value": "none",
+            "label": "Original"
+          },
+          {
+            "value": "uppercase",
+            "label": "UPPERCASE"
+          },
+          {
+            "value": "lowercase",
+            "label": "lowercase"
+          },
+          {
+            "value": "capitalize",
+            "label": "Capitalize words"
+          }
+        ],
+        "default": "none"
       }
     ]
   },
@@ -234,6 +876,121 @@
   {
     "name": "t:settings_schema.buttons.name",
     "settings": [
+      {
+        "type": "header",
+        "content": "Typography"
+      },
+      {
+        "type": "font_picker",
+        "id": "button_font_mobile",
+        "label": "Mobile font family",
+        "default": "jost_n4"
+      },
+      {
+        "type": "range",
+        "id": "button_size_mobile",
+        "label": "Mobile font size",
+        "min": 10,
+        "max": 40,
+        "step": 1,
+        "unit": "px",
+        "default": 15
+      },
+      {
+        "type": "font_picker",
+        "id": "button_font_desktop",
+        "label": "Desktop font family",
+        "default": "jost_n4"
+      },
+      {
+        "type": "range",
+        "id": "button_size_desktop",
+        "label": "Desktop font size",
+        "min": 10,
+        "max": 40,
+        "step": 1,
+        "unit": "px",
+        "default": 15
+      },
+      {
+        "type": "select",
+        "id": "button_text_case",
+        "label": "Text case",
+        "default": "none",
+        "options": [
+          {
+            "value": "none",
+            "label": "Original"
+          },
+          {
+            "value": "uppercase",
+            "label": "UPPERCASE"
+          },
+          {
+            "value": "lowercase",
+            "label": "lowercase"
+          },
+          {
+            "value": "capitalize",
+            "label": "Capitalize words"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": "Applies to theme buttons, including slideshow and product buttons. Mobile settings apply below 750px."
+      },
+      {
+        "type": "header",
+        "content": "Size and padding"
+      },
+      {
+        "type": "select",
+        "id": "button_width_mode",
+        "label": "Button width",
+        "default": "fit",
+        "options": [
+          {
+            "value": "fit",
+            "label": "Fit to content"
+          },
+          {
+            "value": "fixed",
+            "label": "Fixed width"
+          }
+        ]
+      },
+      {
+        "type": "range",
+        "id": "button_fixed_width",
+        "label": "Fixed width",
+        "min": 80,
+        "max": 480,
+        "step": 4,
+        "unit": "px",
+        "default": 200,
+        "info": "Used when Fixed width is selected. Buttons shrink to fit narrow containers."
+      },
+      {
+        "type": "range",
+        "id": "button_padding_block",
+        "label": "Padding block (top and bottom)",
+        "min": 0,
+        "max": 50,
+        "step": 1,
+        "unit": "px",
+        "default": 12
+      },
+      {
+        "type": "range",
+        "id": "button_padding_inline",
+        "label": "Padding inline (left and right)",
+        "min": 0,
+        "max": 100,
+        "step": 1,
+        "unit": "px",
+        "default": 30
+      },
       {
         "type": "header",
         "content": "t:settings_schema.global.settings.header__border.content"

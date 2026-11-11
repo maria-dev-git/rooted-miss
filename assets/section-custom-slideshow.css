@@ -1,0 +1,78 @@
+.custom-slideshow__stage { display: grid; position: relative; isolation: isolate; }
+.custom-slideshow__stage > .slideshow, .custom-slideshow__stage > .custom-slideshow__content { grid-area: 1 / 1; min-width: 0; width: 100%; }
+.custom-slideshow__stage > .slideshow { align-self: stretch; }
+.custom-slideshow .slideshow__slide { min-height: 100%; }
+.custom-slideshow .slideshow__media picture { display: block; position: absolute; inset: 0; width: 100%; height: 100%; }
+.custom-slideshow .slideshow__media picture img { display: block; width: 100%; height: 100%; object-fit: cover; }
+.custom-slideshow__stage > .custom-slideshow__content { position: relative; z-index: 2; pointer-events: none; padding: 4rem 1.5rem; min-height: 34rem; }
+.custom-slideshow__content .banner__box { pointer-events: auto; }
+.custom-slideshow .banner--small + .custom-slideshow__content { min-height: 28rem; }
+.custom-slideshow .banner--large + .custom-slideshow__content { min-height: 39rem; }
+.custom-slideshow .banner--adapt_image { min-height: auto; aspect-ratio: var(--custom-mobile-ratio); }
+.custom-slideshow .banner--desktop-transparent .banner__box { background: transparent; border: 0; box-shadow: none; }
+@media screen and (max-width: 749px) {
+  .custom-slideshow__content { align-items: center; justify-content: center; }
+  .custom-slideshow.mobile-text-below .custom-slideshow__content { grid-area: 2 / 1; min-height: auto; }
+  .custom-slideshow .slideshow.banner--small { min-height: 28rem; }
+  .custom-slideshow .slideshow.banner--medium { min-height: 34rem; }
+  .custom-slideshow .slideshow.banner--large { min-height: 39rem; }
+}
+@media screen and (min-width: 750px) {
+  .custom-slideshow__stage > .custom-slideshow__content { padding: 5rem; min-height: 56rem; }
+  .custom-slideshow .banner--small + .custom-slideshow__content { min-height: 42rem; }
+  .custom-slideshow .banner--large + .custom-slideshow__content { min-height: 72rem; }
+  .custom-slideshow .banner--adapt_image { aspect-ratio: var(--custom-desktop-ratio); }
+}
+.custom-slideshow .banner--adapt_image + .custom-slideshow__content { min-height: auto; }
+@media (prefers-reduced-motion: no-preference) {
+  .custom-slideshow .animate--ambient picture { animation: animateAmbient 30s linear infinite; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .custom-slideshow .slider { scroll-behavior: auto; }
+  .custom-slideshow .animate--ambient picture { animation: none; }
+}
+
+/* Share the image grid cell so controls stay on the image, even with text below. */
+.custom-slideshow__stage > .slideshow__controls {
+  grid-area: 1 / 1;
+  position: relative;
+  align-self: end;
+  justify-self: center;
+  z-index: 3;
+  width: fit-content;
+  max-width: calc(100% - 3rem);
+  margin: 0 0 1.5rem;
+  padding: 0 0.5rem;
+  border: 0;
+  border-radius: 3rem;
+  background: transparent;
+  --color-foreground: 255, 255, 255;
+}
+.custom-slideshow .slideshow__controls .slideshow__autoplay {
+  display: none;
+}
+.custom-slideshow__stage > .custom-slideshow__content { padding-bottom: 8rem; }
+@media screen and (max-width: 749px) {
+  .custom-slideshow.mobile-text-below .custom-slideshow__content { padding-bottom: 4rem; }
+}
+
+/* Keep arrow elements available to the theme slider controller. */
+.custom-slideshow .slideshow__controls .slider-button--prev,
+.custom-slideshow .slideshow__controls .slider-button--next {
+  display: none;
+}
+
+.custom-slideshow--draggable .slider { cursor: grab; touch-action: pan-y pinch-zoom; }
+.custom-slideshow--draggable .slider.is-dragging {
+  cursor: grabbing;
+  scroll-snap-type: none;
+  scroll-behavior: auto;
+  user-select: none;
+}
+.custom-slideshow--draggable .slider img { user-select: none; -webkit-user-drag: none; }
+/* Let swipes pass through fixed text to the image track, while links stay usable. */
+.custom-slideshow--draggable .custom-slideshow__content .banner__box { pointer-events: none; }
+.custom-slideshow--draggable .custom-slideshow__content :is(a, button, input, select, textarea) { pointer-events: auto; }
+@media screen and (max-width: 749px) {
+  .custom-slideshow--draggable.mobile-text-below .custom-slideshow__content .banner__box { pointer-events: auto; }
+}
