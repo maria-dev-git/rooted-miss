@@ -15,7 +15,9 @@
     "heading_scale": 105,
     "type_body_font": "jost_n4",
     "body_scale": 100,
-    "page_width": 1200,
+    "type_h5_size_desktop": 16,
+    "type_h5_size_mobile": 14,
+    "page_width": 1400,
     "spacing_sections": 0,
     "spacing_grid_horizontal": 12,
     "spacing_grid_vertical": 12,
@@ -45,6 +47,7 @@
     "inputs_shadow_horizontal_offset": 0,
     "inputs_shadow_vertical_offset": 4,
     "inputs_shadow_blur": 5,
+    "product_card_image_ratio": "portrait_tall",
     "card_style": "card",
     "card_image_padding": 4,
     "card_text_alignment": "left",
@@ -197,7 +200,7 @@
           "text": "#ffffff",
           "button": "#f0f1f1",
           "button_label": "#00080f",
-          "secondary_button_label": "#F0F1F1",
+          "secondary_button_label": "#f0f1f1",
           "shadow": "#7c4d4d"
         }
       },

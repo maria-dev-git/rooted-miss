@@ -1,35 +1,40 @@
 {% comment %}
   Typography for a heading or text block. Automatic mode inherits the existing
   theme rules. Explicit theme styles reference global responsive variables.
-  Inputs: block, section_id.
+  Inputs: block, section_id; or typography_settings, typography_id for section headings.
 {% endcomment %}
 {%- liquid
-  assign source = block.settings.typography_source | default: 'theme'
-  assign profile = block.settings.typography_style | default: 'auto'
+  assign type_settings = typography_settings | default: block.settings
+  capture target_id
+    echo 'Typography-' | append: section_id | append: '-' | append: block.id
+  endcapture
+  assign target_id = typography_id | default: target_id
+  assign source = type_settings.typography_source | default: 'theme'
+  assign profile = type_settings.typography_style | default: 'auto'
 -%}
 {%- if source == 'custom' or profile != 'auto' -%}
   {%- style -%}
     {%- if source == 'custom' -%}
-      {{ block.settings.custom_font | font_face: font_display: 'swap' }}
+      {{ type_settings.custom_font | font_face: font_display: 'swap' }}
       {%- liquid
-        assign font_bold = block.settings.custom_font | font_modify: 'weight', 'bold'
-        assign font_italic = block.settings.custom_font | font_modify: 'style', 'italic'
+        assign font_bold = type_settings.custom_font | font_modify: 'weight', 'bold'
+        assign font_italic = type_settings.custom_font | font_modify: 'style', 'italic'
         assign font_bold_italic = font_bold | font_modify: 'style', 'italic'
       -%}
       {{ font_bold | font_face: font_display: 'swap' }}
       {{ font_italic | font_face: font_display: 'swap' }}
       {{ font_bold_italic | font_face: font_display: 'swap' }}
     {%- endif -%}
-    html body #Typography-{{ section_id }}-{{ block.id }},
-    html body #Typography-{{ section_id }}-{{ block.id }} :is(p, li, h1, h2, h3, h4, h5, h6) {
+    html body #{{ target_id }},
+    html body #{{ target_id }} :is(p, li, h1, h2, h3, h4, h5, h6) {
       {%- if source == 'custom' -%}
-        font-family: {{ block.settings.custom_font.family | json }}, {{ block.settings.custom_font.fallback_families }};
-        font-style: {{ block.settings.custom_font.style }};
-        font-weight: {{ block.settings.custom_font.weight }};
-        font-size: {{ block.settings.custom_size_mobile }}px;
-        line-height: {{ block.settings.custom_line_mobile }};
-        letter-spacing: {{ block.settings.custom_spacing_mobile }}px;
-        text-transform: {{ block.settings.custom_case }};
+        font-family: {{ type_settings.custom_font.family | json }}, {{ type_settings.custom_font.fallback_families }};
+        font-style: {{ type_settings.custom_font.style }};
+        font-weight: {{ type_settings.custom_font.weight }};
+        font-size: {{ type_settings.custom_size_mobile }}px;
+        line-height: {{ type_settings.custom_line_mobile }};
+        letter-spacing: {{ type_settings.custom_spacing_mobile }}px;
+        text-transform: {{ type_settings.custom_case }};
       {%- else -%}
         font-family: var(--type-{{ profile }}-family);
         font-style: var(--type-{{ profile }}-style);
@@ -42,11 +47,11 @@
     }
     {%- if source == 'custom' -%}
       @media screen and (min-width: 750px) {
-        html body #Typography-{{ section_id }}-{{ block.id }},
-        html body #Typography-{{ section_id }}-{{ block.id }} :is(p, li, h1, h2, h3, h4, h5, h6) {
-          font-size: {{ block.settings.custom_size_desktop }}px;
-          line-height: {{ block.settings.custom_line_desktop }};
-          letter-spacing: {{ block.settings.custom_spacing_desktop }}px;
+        html body #{{ target_id }},
+        html body #{{ target_id }} :is(p, li, h1, h2, h3, h4, h5, h6) {
+          font-size: {{ type_settings.custom_size_desktop }}px;
+          line-height: {{ type_settings.custom_line_desktop }};
+          letter-spacing: {{ type_settings.custom_spacing_desktop }}px;
         }
       }
     {%- endif -%}
