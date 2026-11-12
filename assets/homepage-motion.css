@@ -1,0 +1,37 @@
+/* Homepage motion; content stays visible if JavaScript is unavailable. */
+@keyframes rm-rise { from { opacity: 0; transform: translateY(24px); } to { opacity: 1; transform: none; } }
+@keyframes rm-heading { from { opacity: 0; clip-path: inset(100% 0 0 0); transform: translateY(16px); } to { opacity: 1; clip-path: inset(0); transform: none; } }
+@media (prefers-reduced-motion: no-preference) {
+  #MainContent .rm-reveal.rm-visible { animation: rm-rise 700ms cubic-bezier(.22,1,.36,1) both; animation-delay: var(--rm-delay, 0ms); }
+  #MainContent .rm-heading.rm-visible { animation-name: rm-heading; animation-duration: 900ms; }
+  #MainContent .rm-parallax { overflow: hidden; }
+  #MainContent .rm-parallax > img { transform: translateY(var(--rm-parallax-y, 0px)) scale(1.28); }
+}
+@media (hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference) {
+  #MainContent .collection-list-overlay-card__media img { transition: transform 600ms cubic-bezier(.22,1,.36,1); }
+  #MainContent .collection-list-overlay-card:hover .collection-list-overlay-card__media img { transform: scale(1.045); }
+}
+@media screen and (max-width: 749px) {
+  @keyframes rm-rise { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: none; } }
+  #MainContent .rm-reveal.rm-visible { animation-duration: 500ms; }
+  #MainContent .rm-parallax > img { transform: translateY(var(--rm-parallax-y, 0px)) scale(1.2); }
+}
+@media (prefers-reduced-motion: reduce) {
+  #MainContent .rm-reveal { animation: none !important; }
+  #MainContent .rm-parallax > img { transform: none; }
+}
+
+/* Desktop collection storytelling: sticky stage with scroll-controlled cards. */
+@media screen and (min-width: 990px) and (prefers-reduced-motion: no-preference) {
+  #MainContent .rm-collection-fit .collection-list-overlay-card { max-height: var(--rm-card-max-height); }
+  #MainContent .rm-collection-pin { flex-shrink: 0; height: var(--rm-pin-height); position: relative; }
+  #MainContent .rm-collection-pin__stage { position: sticky; top: var(--rm-pin-top); }
+  #MainContent .rm-collection-pin__card,
+  #MainContent .rm-collection-pin__card.rm-reveal.rm-visible {
+    animation: none;
+    opacity: var(--rm-card-progress, 0);
+    transform: translateY(calc((1 - var(--rm-card-progress, 0)) * 60px));
+    clip-path: inset(calc((1 - var(--rm-card-progress, 0)) * 12%) 0 0 0);
+  }
+  #MainContent .rm-collection-pin slider-component { overflow: clip; }
+}
