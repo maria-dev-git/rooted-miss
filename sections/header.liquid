@@ -8,6 +8,11 @@
   onload="this.media='all'"
 >
 
+{%- if section.settings.drawer_featured_collection != blank -%}
+  {{ 'component-card.css' | asset_url | stylesheet_tag }}
+  {{ 'component-price.css' | asset_url | stylesheet_tag }}
+{%- endif -%}
+
 {%- if settings.predictive_search_enabled -%}
   <link rel="stylesheet" href="{{ 'component-price.css' | asset_url }}" media="print" onload="this.media='all'">
 {%- endif -%}
@@ -648,6 +653,31 @@
       "unit": "px",
       "label": "t:sections.all.padding.padding_bottom",
       "default": 20
+    },
+    {
+      "type": "header",
+      "content": "Menu drawer featured collection"
+    },
+    {
+      "type": "collection",
+      "id": "drawer_featured_collection",
+      "label": "Featured collection",
+      "info": "Displays products below the navigation links in the menu drawer. Leave empty to hide."
+    },
+    {
+      "type": "text",
+      "id": "drawer_collection_heading",
+      "label": "Heading",
+      "default": "Featured products"
+    },
+    {
+      "type": "range",
+      "id": "drawer_products_to_show",
+      "label": "Products to show",
+      "min": 2,
+      "max": 8,
+      "step": 1,
+      "default": 4
     }
   ],
   "blocks": [

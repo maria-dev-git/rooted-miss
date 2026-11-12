@@ -18,7 +18,7 @@
   <div class="contact page-width page-width--narrow section-{{ section.id }}-padding">
     {%- if section.settings.heading != blank -%}
       <h2 class="title title-wrapper--no-top-margin inline-richtext {{ section.settings.heading_size }}{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}">
-        {{ section.settings.heading }}
+        {{ section.settings.heading | newline_to_br }}
       </h2>
     {%- else -%}
       <h2 class="visually-hidden">{{ 'templates.contact.form.title' | t }}</h2>
@@ -145,7 +145,7 @@
   },
   "settings": [
     {
-      "type": "inline_richtext",
+      "type": "textarea",
       "id": "heading",
       "default": "t:sections.contact-form.settings.title.default",
       "label": "t:sections.contact-form.settings.title.label"

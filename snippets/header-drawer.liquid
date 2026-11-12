@@ -134,6 +134,34 @@
                 </li>
               {%- endfor -%}
             </ul>
+            {%- assign drawer_collection = section.settings.drawer_featured_collection -%}
+            {%- if drawer_collection != blank and drawer_collection.products.size > 0 -%}
+              {%- assign drawer_card_section_id = section.id | append: '-drawer' -%}
+              <div class="menu-drawer__featured-collection">
+                {%- if section.settings.drawer_collection_heading != blank -%}
+                  <h2 class="h4 menu-drawer__collection-heading">{{ section.settings.drawer_collection_heading | escape }}</h2>
+                {%- endif -%}
+                <ul class="menu-drawer__product-carousel list-unstyled" role="list" tabindex="0" aria-label="{{ drawer_collection.title | escape }}">
+                  {%- for drawer_product in drawer_collection.products limit: section.settings.drawer_products_to_show -%}
+                    <li>
+                      {% render 'card-product',
+                        card_product: drawer_product,
+                        section_id: drawer_card_section_id,
+                        media_aspect_ratio: 'portrait',
+                        show_secondary_image: false,
+                        show_vendor: false,
+                        show_rating: false,
+                        lazy_load: true,
+                        skip_styles: true,
+                        quick_add: 'none',
+                        product_view_context: 'collection'
+                      %}
+                    </li>
+                  {%- endfor -%}
+                </ul>
+                <a href="{{ drawer_collection.url }}" class="link underlined-link menu-drawer__collection-view-all">{{ 'sections.collection_list.view_all' | t }} — {{ drawer_collection.title | escape }}</a>
+              </div>
+            {%- endif -%}
           </nav>
           <div class="menu-drawer__utility-links">
             {%- if shop.customer_accounts_enabled -%}

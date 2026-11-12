@@ -1,0 +1,95 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "main": {
+      "type": "main-page",
+      "disabled": true,
+      "settings": {
+        "padding_top": 28,
+        "padding_bottom": 28
+      }
+    },
+    "image_with_text_JnqA3N": {
+      "type": "image-with-text",
+      "blocks": {
+        "heading_jB7G34": {
+          "type": "heading",
+          "settings": {
+            "heading": "&nbsp;About Rooted Miss&nbsp;",
+            "heading_size": "h1",
+            "typography_source": "theme",
+            "typography_style": "h2",
+            "custom_font": "sans_serif_n4",
+            "custom_size_desktop": 42,
+            "custom_size_mobile": 32,
+            "custom_line_desktop": 1.3,
+            "custom_line_mobile": 1.3,
+            "custom_spacing_desktop": 0.6,
+            "custom_spacing_mobile": 0.6,
+            "custom_case": "none"
+          }
+        },
+        "text_CnMzKy": {
+          "type": "text",
+          "settings": {
+            "text": "<p><strong>Celebrating African Heritage. Empowering Women. Embracing Individuality.</strong></p><p>At Rooted Miss, we believe that fashion is more than what you wear — it's a way to express your identity, celebrate your roots, and share your story with the world.</p><p>Rooted in the richness of African culture, we bring traditional craftsmanship into modern fashion, creating pieces that honor our heritage while celebrating individuality. Every design reflects the beauty of African artistry, the hands behind the craft, and the stories woven into every detail.</p><p>Our mission goes beyond fashion. We are passionate about empowering women entrepreneurs across Africa by creating opportunities, supporting local talent, and helping preserve generations of artisanal knowledge.</p><p>We want every woman who wears Rooted Miss to feel confident, connected to her roots, and proud of what makes her unique.</p><p><strong>Rooted in Africa. Made to Be Uniquely Yours.</strong></p>",
+            "text_style": "body",
+            "typography_source": "theme",
+            "typography_style": "body",
+            "custom_font": "jost_n4",
+            "custom_size_desktop": 16,
+            "custom_size_mobile": 15,
+            "custom_line_desktop": 1.8,
+            "custom_line_mobile": 1.8,
+            "custom_spacing_desktop": 0.6,
+            "custom_spacing_mobile": 0.6,
+            "custom_case": "none"
+          }
+        },
+        "button_3EXFWw": {
+          "type": "button",
+          "settings": {
+            "button_label": "Show Now",
+            "button_link": "shopify://collections/shop-all",
+            "button_style_secondary": false
+          }
+        }
+      },
+      "block_order": [
+        "heading_jB7G34",
+        "text_CnMzKy",
+        "button_3EXFWw"
+      ],
+      "name": "t:sections.image-with-text.presets.name",
+      "settings": {
+        "width_mobile": "full",
+        "width_desktop": "full",
+        "image": "shopify://shop_images/IMG_9704.jpg",
+        "height": "adapt",
+        "desktop_image_width": "medium",
+        "layout": "image_first",
+        "image_behavior": "none",
+        "content_layout": "no-overlap",
+        "desktop_content_position": "top",
+        "desktop_content_alignment": "left",
+        "mobile_content_alignment": "left",
+        "section_color_scheme": "scheme-5",
+        "color_scheme": "scheme-5",
+        "padding_top": 0,
+        "padding_bottom": 0
+      }
+    }
+  },
+  "order": [
+    "main",
+    "image_with_text_JnqA3N"
+  ]
+}

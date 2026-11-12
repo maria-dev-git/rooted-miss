@@ -241,3 +241,45 @@ details[open].menu-opening > .menu-drawer__submenu {
     transition: none !important;
   }
 }
+
+.menu-drawer__featured-collection {
+  margin-top: 2rem;
+  padding: 2rem 3rem 0;
+  border-top: 1px solid rgba(var(--color-foreground), 0.15);
+}
+.menu-drawer__collection-heading {
+  margin: 0 0 1.5rem;
+}
+.menu-drawer__product-carousel {
+  display: flex;
+  flex-wrap: nowrap;
+  gap: 1rem;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scroll-behavior: smooth;
+  overscroll-behavior-x: contain;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+  padding-block: 0.5rem;
+}
+.menu-drawer__product-carousel::-webkit-scrollbar { display: none; }
+.menu-drawer__product-carousel > li {
+  flex: 0 0 calc((100% - 1rem) / 2);
+  min-width: 0;
+  scroll-snap-align: start;
+}
+@media (prefers-reduced-motion: reduce) {
+  .menu-drawer__product-carousel { scroll-behavior: auto; }
+}
+.menu-drawer__product-carousel .card__information { padding-inline: 1rem; }
+.menu-drawer__collection-view-all {
+  display: inline-block;
+  margin-top: 1.5rem;
+  font-size: 1.4rem;
+}
+
+/* Keep the horizontal carousel inside the drawer grid track. */
+.menu-drawer__navigation-container { grid-template-columns: minmax(0, 1fr); }
+.menu-drawer__navigation,
+.menu-drawer__featured-collection { min-width: 0; }
+.menu-drawer__product-carousel { width: 100%; max-width: 100%; }

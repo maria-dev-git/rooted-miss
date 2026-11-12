@@ -127,6 +127,78 @@
         "padding_bottom": 36
       }
     },
+    "collapsible_content_VhHVww": {
+      "type": "collapsible-content",
+      "blocks": {
+        "collapsible_row_aLQkTP": {
+          "type": "collapsible_row",
+          "settings": {
+            "heading": "What is Rooted Miss?",
+            "icon": "none",
+            "row_content": "<p>Rooted Miss is a fashion brand inspired by the richness of African culture and heritage. We celebrate traditional craftsmanship, individuality, and modern style through pieces that allow women to express their identity and embrace their roots.</p>",
+            "page": ""
+          }
+        },
+        "collapsible_row_pVHRNB": {
+          "type": "collapsible_row",
+          "settings": {
+            "heading": "Where are your products made?",
+            "icon": "none",
+            "row_content": "<p>Our brand is rooted in Nigeria, where we celebrate the creativity, skills, and traditions of African artisans. We are passionate about supporting local craftsmanship and preserving the cultural stories behind every design.</p>",
+            "page": ""
+          }
+        },
+        "collapsible_row_7LRUzA": {
+          "type": "collapsible_row",
+          "settings": {
+            "heading": "What makes Rooted Miss unique?",
+            "icon": "none",
+            "row_content": "<p>Every Rooted Miss piece celebrates the beauty of African heritage while embracing modern individuality. We bring traditional artistry into contemporary fashion, creating styles that help every woman feel confident, authentic, and uniquely herself.</p>",
+            "page": ""
+          }
+        },
+        "collapsible_row_bC8Xaw": {
+          "type": "collapsible_row",
+          "settings": {
+            "heading": "How does Rooted Miss support women in Africa?",
+            "icon": "none",
+            "row_content": "<p>Empowering women entrepreneurs is at the heart of our mission. We believe in creating opportunities for African women, supporting their talents and businesses, and helping build a community where creativity and entrepreneurship can thrive.</p>",
+            "page": ""
+          }
+        },
+        "collapsible_row_yDCMrx": {
+          "type": "collapsible_row",
+          "settings": {
+            "heading": "How should I care for my Rooted Miss pieces?",
+            "icon": "none",
+            "row_content": "<p>We recommend following the care instructions provided with each product. As our pieces celebrate artisanal craftsmanship, gentle washing and proper storage can help preserve their quality, colors, and unique details for years to come.</p>",
+            "page": ""
+          }
+        }
+      },
+      "block_order": [
+        "collapsible_row_aLQkTP",
+        "collapsible_row_pVHRNB",
+        "collapsible_row_7LRUzA",
+        "collapsible_row_bC8Xaw",
+        "collapsible_row_yDCMrx"
+      ],
+      "name": "t:sections.collapsible_content.presets.name",
+      "settings": {
+        "caption": "",
+        "heading": "Frequently Asked Qusestions",
+        "heading_size": "h1",
+        "heading_alignment": "center",
+        "layout": "none",
+        "container_color_scheme": "scheme-5",
+        "color_scheme": "scheme-5",
+        "open_first_collapsible_row": false,
+        "image_ratio": "adapt",
+        "desktop_layout": "image_second",
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
+    },
     "related-products": {
       "type": "related-products",
       "disabled": true,
@@ -151,6 +223,7 @@
     "main",
     "disclosures",
     "featured_collection_fffpwi",
+    "collapsible_content_VhHVww",
     "related-products"
   ]
 }
