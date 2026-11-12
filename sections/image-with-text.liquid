@@ -12,6 +12,33 @@
       padding-bottom: {{ section.settings.padding_bottom }}px;
     }
   }
+  #shopify-section-{{ section.id }} .image-with-text-width {
+    box-sizing: border-box;
+    width: 100%;
+    margin-inline: auto;
+  }
+  @media screen and (max-width: 749px) {
+    #shopify-section-{{ section.id }} .image-with-text-width {
+      {% if section.settings.width_mobile == 'full' %}
+        max-width: none;
+        padding-inline: 0;
+      {% else %}
+        max-width: var(--page-width);
+        padding-inline: 1.5rem;
+      {% endif %}
+    }
+  }
+  @media screen and (min-width: 750px) {
+    #shopify-section-{{ section.id }} .image-with-text-width {
+      {% if section.settings.width_desktop == 'full' %}
+        max-width: none;
+        padding-inline: 0;
+      {% else %}
+        max-width: var(--page-width);
+        padding-inline: 5rem;
+      {% endif %}
+    }
+  }
 {%- endstyle -%}
 
 {%- liquid
@@ -25,7 +52,7 @@
 -%}
 
 <div class="section-{{ section.id }}-padding gradient color-{{ section.settings.section_color_scheme }}">
-  <div class="page-width">
+  <div class="image-with-text-width">
     <div class="image-with-text image-with-text--{{ section.settings.content_layout }} isolate{% if settings.text_boxes_border_thickness > 0 and settings.text_boxes_border_opacity > 0 and settings.media_border_thickness > 0 and settings.media_border_opacity > 0 %} collapse-borders{% endif %}{% unless section.settings.color_scheme == section.settings.section_color_scheme and settings.media_border_thickness > 0 and settings.text_boxes_shadow_opacity == 0 and settings.text_boxes_border_thickness == 0 or settings.text_boxes_border_opacity == 0 %} collapse-corners{% endunless %}{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}">
       <div class="image-with-text__grid grid grid--gapless grid--1-col grid--{% if section.settings.desktop_image_width == 'medium' %}2-col-tablet{% else %}3-col-tablet{% endif %}{% if section.settings.layout == 'text_first' %} image-with-text__grid--reverse{% endif %}">
         <div class="image-with-text__media-item image-with-text__media-item--{{ section.settings.desktop_image_width }} image-with-text__media-item--{{ section.settings.desktop_content_position }} grid__item">
@@ -121,6 +148,38 @@
     ]
   },
   "settings": [
+    {
+      "type": "select",
+      "id": "width_mobile",
+      "label": "Mobile width",
+      "options": [
+        {
+          "value": "page",
+          "label": "Page width"
+        },
+        {
+          "value": "full",
+          "label": "Full width"
+        }
+      ],
+      "default": "page"
+    },
+    {
+      "type": "select",
+      "id": "width_desktop",
+      "label": "Desktop width",
+      "options": [
+        {
+          "value": "page",
+          "label": "Page width"
+        },
+        {
+          "value": "full",
+          "label": "Full width"
+        }
+      ],
+      "default": "page"
+    },
     {
       "type": "image_picker",
       "id": "image",

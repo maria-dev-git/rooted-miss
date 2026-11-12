@@ -231,3 +231,11 @@
     display: list-item;
   }
 }
+/* Keep Multicolumn cards and their image wrappers square. */
+.multicolumn .multicolumn-card {
+  --text-boxes-radius: 0px;
+  border-radius: 0;
+}
+.multicolumn .multicolumn-card > .multicolumn-card__image-wrapper {
+  border-radius: 0;
+}
