@@ -65,6 +65,8 @@
       ],
       "disabled": true,
       "settings": {
+        "width_desktop": "full",
+        "width_mobile": "full",
         "image": "shopify://shop_images/DSC06482_9d9fb3c3-9dd0-487a-a0ed-0164577ea770.jpg",
         "image_overlay_opacity": 40,
         "image_height": "medium",
@@ -186,6 +188,7 @@
       "block_order": [
         "text"
       ],
+      "name": "Empowering women",
       "settings": {
         "desktop_content_position": "center",
         "vertical_content_position": "bottom",
@@ -198,32 +201,90 @@
         "padding_bottom": 4
       }
     },
-    "featured_collection1": {
-      "type": "featured-collection",
+    "collection_list_awFJhr": {
+      "type": "collection-list",
+      "name": "t:sections.collection-list.presets.name",
       "settings": {
-        "collection": "dresses",
-        "products_to_show": 5,
-        "title": "New In",
-        "heading_size": "h2",
-        "description": "",
-        "show_description": false,
-        "description_style": "body",
-        "columns_desktop": 5,
-        "enable_desktop_slider": false,
-        "full_width": false,
-        "show_view_all": true,
-        "view_all_style": "solid",
+        "collections_to_show": [
+          "best-sellers",
+          "abayas",
+          "dresses"
+        ],
+        "title": "Shop By Categories",
+        "heading_size": "h1",
+        "typography_source": "theme",
+        "typography_style": "h2",
+        "custom_font": "sans_serif_n4",
+        "custom_size_desktop": 42,
+        "custom_size_mobile": 32,
+        "custom_line_desktop": 1.3,
+        "custom_line_mobile": 1.3,
+        "custom_spacing_desktop": 0.6,
+        "custom_spacing_mobile": 0.6,
+        "custom_case": "none",
+        "image_ratio": "portrait",
+        "columns_desktop": 3,
+        "gap_desktop": 18,
+        "gap_mobile": 12,
+        "shop_now_label": "Shop now",
+        "card_content_color": "#ffffff",
+        "card_content_padding": 20,
         "color_scheme": "scheme-5",
-        "image_ratio": "adapt",
-        "image_shape": "default",
-        "show_secondary_image": false,
-        "show_vendor": false,
-        "show_rating": false,
-        "quick_add": "bulk",
-        "columns_mobile": "2",
-        "swipe_on_mobile": false,
-        "padding_top": 36,
+        "show_view_all": false,
+        "columns_mobile": "1",
+        "swipe_on_mobile": true,
+        "padding_top": 44,
         "padding_bottom": 52
+      }
+    },
+    "image_with_text_nczc4q": {
+      "type": "image-with-text",
+      "blocks": {
+        "heading_awwnNt": {
+          "type": "heading",
+          "settings": {
+            "heading": "Discover unique, handmade designs to fit your style&nbsp;",
+            "heading_size": "h1",
+            "typography_source": "custom",
+            "typography_style": "h2",
+            "custom_font": "sans_serif_n4",
+            "custom_size_desktop": 42,
+            "custom_size_mobile": 30,
+            "custom_line_desktop": 1.3,
+            "custom_line_mobile": 1.3,
+            "custom_spacing_desktop": 0.6,
+            "custom_spacing_mobile": 0.6,
+            "custom_case": "none"
+          }
+        },
+        "button_ECUJGq": {
+          "type": "button",
+          "settings": {
+            "button_label": "Shop Now",
+            "button_link": "shopify://collections",
+            "button_style_secondary": false
+          }
+        }
+      },
+      "block_order": [
+        "heading_awwnNt",
+        "button_ECUJGq"
+      ],
+      "name": "Discover unique",
+      "settings": {
+        "image": "shopify://shop_images/DSC05260_0c002bf9-3e85-47a2-aecc-09b6a4d52637.jpg",
+        "height": "medium",
+        "desktop_image_width": "medium",
+        "layout": "image_first",
+        "image_behavior": "none",
+        "content_layout": "no-overlap",
+        "desktop_content_position": "top",
+        "desktop_content_alignment": "left",
+        "mobile_content_alignment": "left",
+        "section_color_scheme": "scheme-contact-send-button",
+        "color_scheme": "scheme-contact-send-button",
+        "padding_top": 0,
+        "padding_bottom": 0
       }
     },
     "multicolumn1": {
@@ -232,7 +293,7 @@
         "column7": {
           "type": "column",
           "settings": {
-            "title": "Discover uniqe, handmade designs to fit your style",
+            "title": "Discover unique, handmade designs to fit your style",
             "text": "",
             "link_label": "Shop Now",
             "link": "shopify://collections/all"
@@ -242,6 +303,7 @@
       "block_order": [
         "column7"
       ],
+      "disabled": true,
       "settings": {
         "title": "",
         "heading_size": "h1",
@@ -252,20 +314,69 @@
         "columns_desktop": 4,
         "column_alignment": "center",
         "background_style": "none",
-        "color_scheme": "scheme-5",
+        "color_scheme": "scheme-contact-send-button",
         "columns_mobile": "1",
         "swipe_on_mobile": true,
         "padding_top": 68,
         "padding_bottom": 68
       }
     },
+    "featured_collection1": {
+      "type": "featured-collection",
+      "settings": {
+        "collection": "dresses",
+        "products_to_show": 4,
+        "title": "New Arrivals",
+        "heading_size": "h1",
+        "typography_source": "theme",
+        "typography_style": "h2",
+        "custom_font": "sans_serif_n4",
+        "custom_size_desktop": 42,
+        "custom_size_mobile": 32,
+        "custom_line_desktop": 1.3,
+        "custom_line_mobile": 1.3,
+        "custom_spacing_desktop": 0.6,
+        "custom_spacing_mobile": 0.6,
+        "custom_case": "none",
+        "description": "",
+        "show_description": false,
+        "description_style": "body",
+        "columns_desktop": 4,
+        "enable_desktop_slider": false,
+        "full_width": false,
+        "show_view_all": true,
+        "view_all_style": "solid",
+        "color_scheme": "scheme-5",
+        "image_ratio": "adapt",
+        "image_shape": "default",
+        "show_secondary_image": true,
+        "show_vendor": false,
+        "show_rating": false,
+        "quick_add": "bulk",
+        "columns_mobile": "2",
+        "swipe_on_mobile": true,
+        "padding_top": 36,
+        "padding_bottom": 52
+      }
+    },
     "featured_collection2": {
       "type": "featured-collection",
+      "disabled": true,
       "settings": {
         "collection": "frontpage",
         "products_to_show": 12,
-        "title": "Featured",
+        "title": "Best Sellers",
         "heading_size": "h2",
+        "typography_source": "theme",
+        "typography_style": "h2",
+        "custom_font": "sans_serif_n4",
+        "custom_size_desktop": 42,
+        "custom_size_mobile": 32,
+        "custom_line_desktop": 1.3,
+        "custom_line_mobile": 1.3,
+        "custom_spacing_desktop": 0.6,
+        "custom_spacing_mobile": 0.6,
+        "custom_case": "none",
         "description": "",
         "show_description": false,
         "description_style": "body",
@@ -277,12 +388,12 @@
         "color_scheme": "scheme-5",
         "image_ratio": "adapt",
         "image_shape": "default",
-        "show_secondary_image": false,
+        "show_secondary_image": true,
         "show_vendor": false,
         "show_rating": false,
         "quick_add": "bulk",
         "columns_mobile": "2",
-        "swipe_on_mobile": false,
+        "swipe_on_mobile": true,
         "padding_top": 36,
         "padding_bottom": 52
       }
@@ -294,7 +405,7 @@
           "type": "column",
           "settings": {
             "title": "Our mission",
-            "text": "<p><br/><br/>Rooted in Africa, made to be uniquely yours. We honor artisanal craftsmanship, inspire pride in traditional wear, and empower women entrepreneurs in Africa.<br/><br/><br/><br/></p>",
+            "text": "<p>Rooted in Africa, made to be uniquely yours. We honor artisanal craftsmanship, inspire pride in traditional wear, and empower women entrepreneurs in Africa.</p>",
             "link_label": "",
             "link": ""
           }
@@ -303,6 +414,7 @@
       "block_order": [
         "column11"
       ],
+      "disabled": true,
       "settings": {
         "title": "",
         "heading_size": "h2",
@@ -319,15 +431,77 @@
         "padding_top": 44,
         "padding_bottom": 48
       }
+    },
+    "image_banner_y93FGj": {
+      "type": "image-banner",
+      "blocks": {
+        "heading_tjWTMp": {
+          "type": "heading",
+          "settings": {
+            "heading": "Our Mission",
+            "heading_size": "h1",
+            "typography_source": "theme",
+            "typography_style": "auto",
+            "custom_font": "sans_serif_n4",
+            "custom_size_desktop": 42,
+            "custom_size_mobile": 32,
+            "custom_line_desktop": 1.3,
+            "custom_line_mobile": 1.3,
+            "custom_spacing_desktop": 0.6,
+            "custom_spacing_mobile": 0.6,
+            "custom_case": "none"
+          }
+        },
+        "text_Lx9x3J": {
+          "type": "text",
+          "settings": {
+            "text": "&nbsp;Rooted in Africa, made to be uniquely yours. We honor artisanal craftsmanship, inspire pride in traditional wear, and empower women entrepreneurs in Africa.&nbsp;",
+            "text_style": "body",
+            "typography_source": "custom",
+            "typography_style": "auto",
+            "custom_font": "jost_n4",
+            "custom_size_desktop": 20,
+            "custom_size_mobile": 15,
+            "custom_line_desktop": 1.8,
+            "custom_line_mobile": 1.2,
+            "custom_spacing_desktop": 0.6,
+            "custom_spacing_mobile": 0.6,
+            "custom_case": "none"
+          }
+        }
+      },
+      "block_order": [
+        "heading_tjWTMp",
+        "text_Lx9x3J"
+      ],
+      "name": "Our Mission",
+      "settings": {
+        "width_desktop": "page",
+        "width_mobile": "full",
+        "image": "shopify://shop_images/IMG_9704.jpg",
+        "image_overlay_opacity": 20,
+        "image_height": "medium",
+        "image_behavior": "none",
+        "desktop_content_position": "middle-center",
+        "desktop_content_alignment": "center",
+        "show_text_box": false,
+        "color_scheme": "scheme-5",
+        "stack_images_on_mobile": true,
+        "mobile_content_alignment": "center",
+        "show_text_below": false
+      }
     }
   },
   "order": [
     "image_banner",
     "custom_slideshow_EmBbtJ",
     "rich_text",
-    "featured_collection1",
+    "collection_list_awFJhr",
+    "image_with_text_nczc4q",
     "multicolumn1",
+    "featured_collection1",
     "featured_collection2",
-    "multicolumn2"
+    "multicolumn2",
+    "image_banner_y93FGj"
   ]
 }

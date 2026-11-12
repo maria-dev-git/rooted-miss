@@ -24,6 +24,37 @@
 {%- endif -%}
 
 {%- style -%}
+  #ImageBannerWidth-{{ section.id }} {
+    width: 100%;
+    box-sizing: border-box;
+    margin-inline: auto;
+  }
+  @media screen and (max-width: 749px) {
+    #ImageBannerWidth-{{ section.id }} {
+      {% if section.settings.width_mobile == 'page' %}
+        max-width: var(--page-width);
+        padding-inline: 1.5rem;
+      {% else %}
+        max-width: none;
+        padding-inline: 0;
+      {% endif %}
+    }
+  }
+  @media screen and (min-width: 750px) {
+    #ImageBannerWidth-{{ section.id }} {
+      {% if section.settings.width_desktop == 'page' %}
+        max-width: var(--page-width);
+        padding-inline: 5rem;
+      {% else %}
+        max-width: none;
+        padding-inline: 0;
+      {% endif %}
+    }
+  }
+  /* Use the full color-scheme foreground for banner body copy. */
+  #Banner-{{ section.id }} .banner__text {
+    color: rgb(var(--color-foreground));
+  }
   #Banner-{{ section.id }}::after {
     opacity: {{ section.settings.image_overlay_opacity | divided_by: 100.0 }};
   }
@@ -51,6 +82,8 @@
   endif
 -%}
 
+<div class="image-banner-background color-{{ section.settings.color_scheme }} gradient">
+<div id="ImageBannerWidth-{{ section.id }}" class="image-banner-width-wrapper">
 <div
   id="Banner-{{ section.id }}"
   class="banner banner--content-align-{{ section.settings.desktop_content_alignment }} banner--content-align-mobile-{{ section.settings.mobile_content_alignment }} banner--{{ section.settings.image_height }}{% if section.settings.stack_images_on_mobile and section.settings.image != blank and section.settings.image_2 != blank %} banner--stacked{% endif %}{% if section.settings.image_height == 'adapt' and section.settings.image != blank %} banner--adapt{% endif %}{% if section.settings.show_text_below %} banner--mobile-bottom{%- endif -%}{% if section.settings.show_text_box == false %} banner--desktop-transparent{% endif %}{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--fade-in{% endif %}"
@@ -167,6 +200,9 @@
     </div>
   </div>
 </div>
+</div>
+
+</div>
 
 {% schema %}
 {
@@ -180,6 +216,44 @@
     ]
   },
   "settings": [
+    {
+      "type": "header",
+      "content": "Section width"
+    },
+    {
+      "type": "select",
+      "id": "width_desktop",
+      "label": "Desktop width",
+      "options": [
+        {
+          "value": "full",
+          "label": "Full width"
+        },
+        {
+          "value": "page",
+          "label": "Page width"
+        }
+      ],
+      "default": "full",
+      "info": "Page width follows the global page width and desktop page gutters. Applies from 750px."
+    },
+    {
+      "type": "select",
+      "id": "width_mobile",
+      "label": "Mobile width",
+      "options": [
+        {
+          "value": "full",
+          "label": "Full width"
+        },
+        {
+          "value": "page",
+          "label": "Page width"
+        }
+      ],
+      "default": "full",
+      "info": "Page width adds the theme’s mobile page gutters. Applies below 750px."
+    },
     {
       "type": "image_picker",
       "id": "image",

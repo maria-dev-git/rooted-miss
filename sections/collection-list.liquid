@@ -14,18 +14,36 @@
       padding-bottom: {{ section.settings.padding_bottom }}px;
     }
   }
+  #CollectionList-{{ section.id }} {
+    --grid-desktop-horizontal-spacing: {{ section.settings.gap_desktop }}px;
+    --grid-desktop-vertical-spacing: {{ section.settings.gap_desktop }}px;
+    --grid-mobile-horizontal-spacing: {{ section.settings.gap_mobile }}px;
+    --grid-mobile-vertical-spacing: {{ section.settings.gap_mobile }}px;
+    --collection-content-padding: {{ section.settings.card_content_padding }}px;
+    --collection-content-color: {{ section.settings.card_content_color }};
+    --collection-content-rgb: {{ section.settings.card_content_color.red }}, {{ section.settings.card_content_color.green }}, {{ section.settings.card_content_color.blue }};
+  }
 {%- endstyle -%}
+{%- assign collection_heading_id = 'SectionHeading-' | append: section.id -%}
+{% render 'block-typography', typography_settings: section.settings, typography_id: collection_heading_id %}
 
 {%- liquid
+  assign collection_items = section.blocks
+  assign use_collection_picker = false
+  if section.settings.collections_to_show != blank
+    assign collection_items = section.settings.collections_to_show
+    assign use_collection_picker = true
+  endif
+  assign collection_count = collection_items.size
   assign columns_mobile_int = section.settings.columns_mobile | plus: 0
   assign show_mobile_slider = false
-  if section.settings.swipe_on_mobile and section.blocks.size > columns_mobile_int
+  if section.settings.swipe_on_mobile and collection_count > columns_mobile_int
     assign show_mobile_slider = true
   endif
 -%}
 
 <div class="color-{{ section.settings.color_scheme }} gradient">
-  <div class="collection-list-wrapper page-width isolate{% if show_mobile_slider %} page-width-desktop{% endif %}{% if section.settings.title == blank %} no-heading{% endif %}{% if section.settings.show_view_all == false or section.blocks.size > collections.size %} no-mobile-link{% endif %} section-{{ section.id }}-padding">
+  <div id="CollectionList-{{ section.id }}" class="collection-list-wrapper page-width isolate{% if show_mobile_slider %} page-width-desktop{% endif %}{% if section.settings.title == blank %} no-heading{% endif %}{% if section.settings.show_view_all == false or collection_count > collections.size %} no-mobile-link{% endif %} section-{{ section.id }}-padding">
     {%- unless section.settings.title == blank -%}
       <div class="title-wrapper-with-link{% if show_mobile_slider %} title-wrapper--self-padded-tablet-down{% else %} title-wrapper--self-padded-mobile{% endif %} title-wrapper--no-top-margin">
         <h2
@@ -50,21 +68,22 @@
 
     <slider-component class="slider-mobile-gutter{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}">
       <ul
-        class="collection-list contains-card contains-card--collection{% if settings.card_style == 'standard' %} contains-card--standard{% endif %} grid grid--{{ section.settings.columns_desktop }}-col-desktop grid--{{ section.settings.columns_mobile }}-col-tablet-down{% if section.settings.swipe_on_mobile %} slider slider--tablet grid--peek{% endif %} collection-list--{{ section.blocks.size }}-items"
+        class="collection-list contains-card contains-card--collection{% if settings.card_style == 'standard' %} contains-card--standard{% endif %} grid grid--{{ section.settings.columns_desktop }}-col-desktop grid--{{ section.settings.columns_mobile }}-col-tablet-down{% if section.settings.swipe_on_mobile %} slider slider--tablet grid--peek{% endif %} collection-list--{{ collection_count }}-items"
         id="Slider-{{ section.id }}"
         role="list"
       >
-        {%- liquid
-          assign columns = section.blocks.size
-          if columns > 3
-            assign columns = 3
-          endif
-        -%}
-        {%- for block in section.blocks -%}
+        {%- for collection_item in collection_items -%}
+          {%- liquid
+            if use_collection_picker
+              assign card_collection = collection_item
+            else
+              assign card_collection = collection_item.settings.collection
+            endif
+          -%}
           <li
             id="Slide-{{ section.id }}-{{ forloop.index }}"
-            class="collection-list__item grid__item{% if show_mobile_slider %} slider__slide{% endif %}{% if block.settings.collection.featured_image == nil %} collection-list__item--no-media{% endif %}{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}"
-            {{ block.shopify_attributes }}
+            class="collection-list__item grid__item{% if show_mobile_slider %} slider__slide{% endif %}{% if card_collection.featured_image == nil %} collection-list__item--no-media{% endif %}{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}"
+            {% unless use_collection_picker %}{{ collection_item.shopify_attributes }}{% endunless %}
             {% if settings.animations_reveal_on_scroll %}
               data-cascade
               style="--animation-order: {{ forloop.index }};"
@@ -72,10 +91,11 @@
           >
             {%- assign placeholder_image_index = forloop.index0 | modulo: 4 | plus: 1 -%}
             {%- assign placeholder_image = 'collection-apparel-' | append: placeholder_image_index -%}
-            {% render 'card-collection',
-              card_collection: block.settings.collection,
+            {% render 'card-collection-overlay',
+              card_collection: card_collection,
               media_aspect_ratio: section.settings.image_ratio,
-              columns: columns,
+              columns: section.settings.columns_desktop,
+              shop_now_label: section.settings.shop_now_label,
               placeholder_image: placeholder_image
             %}
           </li>
@@ -97,7 +117,7 @@
             <span class="slider-counter--current">1</span>
             <span aria-hidden="true"> / </span>
             <span class="visually-hidden">{{ 'general.slider.of' | t }}</span>
-            <span class="slider-counter--total">{{ section.blocks.size }}</span>
+            <span class="slider-counter--total">{{ collection_count }}</span>
           </div>
           <button
             type="button"
@@ -113,7 +133,7 @@
       {%- endif -%}
     </slider-component>
 
-    {%- if section.settings.show_view_all and section.blocks.size < collections.size -%}
+    {%- if section.settings.show_view_all and collection_count < collections.size -%}
       <div
         class="center collection-list-view-all{% if show_mobile_slider %} small-hide medium-hide{% endif %}{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}"
         {% if settings.animations_reveal_on_scroll %}
@@ -140,9 +160,19 @@
   "class": "section section-collection-list",
   "max_blocks": 15,
   "disabled_on": {
-    "groups": ["header", "footer"]
+    "groups": [
+      "header",
+      "footer"
+    ]
   },
   "settings": [
+    {
+      "type": "collection_list",
+      "id": "collections_to_show",
+      "label": "Collections to show",
+      "limit": 15,
+      "info": "Choose and reorder up to 15 collections. When empty, the existing collection blocks are used."
+    },
     {
       "type": "inline_richtext",
       "id": "title",
@@ -179,8 +209,161 @@
     },
     {
       "type": "header",
+      "content": "Heading typography"
+    },
+    {
+      "type": "select",
+      "id": "typography_source",
+      "label": "Typography source",
+      "default": "theme",
+      "options": [
+        {
+          "value": "theme",
+          "label": "Theme typography"
+        },
+        {
+          "value": "custom",
+          "label": "Custom typography"
+        }
+      ]
+    },
+    {
+      "type": "select",
+      "id": "typography_style",
+      "label": "Theme typography style",
+      "default": "auto",
+      "options": [
+        {
+          "value": "auto",
+          "label": "Automatic (use block style)"
+        },
+        {
+          "value": "body",
+          "label": "Body"
+        },
+        {
+          "value": "h1",
+          "label": "H1"
+        },
+        {
+          "value": "h2",
+          "label": "H2"
+        },
+        {
+          "value": "h3",
+          "label": "H3"
+        },
+        {
+          "value": "h4",
+          "label": "H4"
+        },
+        {
+          "value": "h5",
+          "label": "H5"
+        },
+        {
+          "value": "h6",
+          "label": "H6"
+        }
+      ],
+      "info": "Used when Theme typography is selected. Automatic follows the heading size or body text settings."
+    },
+    {
+      "type": "paragraph",
+      "content": "The following controls apply only when Custom typography is selected."
+    },
+    {
+      "type": "font_picker",
+      "id": "custom_font",
+      "label": "Font family",
+      "default": "sans_serif_n4"
+    },
+    {
+      "type": "range",
+      "id": "custom_size_desktop",
+      "label": "Desktop font size",
+      "min": 10,
+      "max": 110,
+      "step": 1,
+      "default": 42,
+      "unit": "px"
+    },
+    {
+      "type": "range",
+      "id": "custom_size_mobile",
+      "label": "Mobile font size",
+      "min": 10,
+      "max": 110,
+      "step": 1,
+      "default": 32,
+      "unit": "px"
+    },
+    {
+      "type": "range",
+      "id": "custom_line_desktop",
+      "label": "Desktop line height",
+      "min": 0.8,
+      "max": 2.5,
+      "step": 0.1,
+      "default": 1.3
+    },
+    {
+      "type": "range",
+      "id": "custom_line_mobile",
+      "label": "Mobile line height",
+      "min": 0.8,
+      "max": 2.5,
+      "step": 0.1,
+      "default": 1.3
+    },
+    {
+      "type": "range",
+      "id": "custom_spacing_desktop",
+      "label": "Desktop letter spacing",
+      "min": -2,
+      "max": 5,
+      "step": 0.1,
+      "default": 0.6,
+      "unit": "px"
+    },
+    {
+      "type": "range",
+      "id": "custom_spacing_mobile",
+      "label": "Mobile letter spacing",
+      "min": -2,
+      "max": 5,
+      "step": 0.1,
+      "default": 0.6,
+      "unit": "px"
+    },
+    {
+      "type": "select",
+      "id": "custom_case",
+      "label": "Text case",
+      "default": "none",
+      "options": [
+        {
+          "value": "none",
+          "label": "Original"
+        },
+        {
+          "value": "uppercase",
+          "label": "UPPERCASE"
+        },
+        {
+          "value": "lowercase",
+          "label": "lowercase"
+        },
+        {
+          "value": "capitalize",
+          "label": "Capitalize words"
+        }
+      ]
+    },
+    {
+      "type": "header",
       "content": "t:sections.collection-list.settings.header_layout.content"
-    },    
+    },
     {
       "type": "select",
       "id": "image_ratio",
@@ -211,6 +394,48 @@
       "label": "t:sections.collection-list.settings.columns_desktop.label"
     },
     {
+      "type": "range",
+      "id": "gap_desktop",
+      "label": "Desktop card gap",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "default": 12
+    },
+    {
+      "type": "range",
+      "id": "gap_mobile",
+      "label": "Mobile card gap",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "default": 8
+    },
+    {
+      "type": "text",
+      "id": "shop_now_label",
+      "label": "Card link label",
+      "default": "Shop now"
+    },
+    {
+      "type": "color",
+      "id": "card_content_color",
+      "label": "Card content color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "range",
+      "id": "card_content_padding",
+      "label": "Card content padding",
+      "min": 0,
+      "max": 60,
+      "step": 1,
+      "unit": "px",
+      "default": 20
+    },
+    {
       "type": "color_scheme",
       "id": "color_scheme",
       "label": "t:sections.all.colors.label",
@@ -222,7 +447,7 @@
       "id": "show_view_all",
       "default": false,
       "label": "t:sections.collection-list.settings.show_view_all.label",
-      "info": "t:sections.collection-list.settings.show_view_all.info"   
+      "info": "t:sections.collection-list.settings.show_view_all.info"
     },
     {
       "type": "header",

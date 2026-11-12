@@ -572,7 +572,7 @@ quick-order-list .pagination-wrapper {
 .quick-order-list__total-items p,
 .totals__subtotal {
   margin-top: 0.2rem;
-  opacity: 0.75;
+  opacity: 1;
   margin-bottom: 0;
 }
 

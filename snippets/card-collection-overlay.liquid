@@ -1,0 +1,44 @@
+{% comment %}
+  Image-overlay collection card used only by the Collection List section.
+  Inputs: card_collection, media_aspect_ratio, columns, placeholder_image.
+{% endcomment %}
+{%- liquid
+  assign ratio = 1
+  if media_aspect_ratio == 'portrait'
+    assign ratio = 0.8
+  elsif media_aspect_ratio == 'adapt' and card_collection.featured_image
+    assign ratio = card_collection.featured_image.aspect_ratio
+  endif
+  if ratio <= 0
+    assign ratio = 1
+  endif
+  assign image_columns = columns | default: 3 | at_least: 1
+  capture image_sizes
+    echo '(min-width: ' | append: settings.page_width | append: 'px) '
+    echo settings.page_width | divided_by: image_columns | append: 'px, '
+    echo '(min-width: 990px) calc(100vw / ' | append: image_columns | append: '), 100vw'
+  endcapture
+-%}
+<a
+  class="collection-list-overlay-card"
+  {% if card_collection != blank %}href="{{ card_collection.url }}"{% else %}role="link" aria-disabled="true"{% endif %}
+  style="--collection-image-ratio: {{ ratio }};"
+>
+  <div class="collection-list-overlay-card__media">
+    {%- if card_collection.featured_image -%}
+      {{ card_collection.featured_image | image_url: width: 3000 | image_tag: widths: '165, 330, 535, 750, 1000, 1500, 2000, 3000', sizes: image_sizes, loading: 'lazy' }}
+    {%- else -%}
+      {{ placeholder_image | default: 'collection-apparel-1' | placeholder_svg_tag: 'placeholder-svg' }}
+    {%- endif -%}
+  </div>
+  <div class="collection-list-overlay-card__content">
+    <h3 class="collection-list-overlay-card__heading">
+      {%- if card_collection.title != blank -%}
+        {{ card_collection.title | escape }}
+      {%- else -%}
+        {{ 'onboarding.collection_title' | t }}
+      {%- endif -%}
+    </h3>
+    <span class="collection-list-overlay-card__shop-now h4">{{ shop_now_label | default: 'Shop now' | escape }}</span>
+  </div>
+</a>
