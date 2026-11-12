@@ -595,3 +595,17 @@
     clip-path: polygon(var(--shape--blob-5));
   }
 }
+
+/* Shared by collection, featured collection, search, and recommendation cards. */
+@media screen and (max-width: 989px) {
+  html body .product-card-wrapper .card__heading .product-card__title-text {
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+    line-clamp: 2;
+    overflow: hidden;
+    line-height: inherit;
+    min-height: 2lh;
+    max-height: 2lh;
+  }
+}
