@@ -151,7 +151,7 @@
       "name": "Custom slideshow",
       "settings": {
         "layout": "full_bleed",
-        "slide_height": "medium",
+        "slide_height": "large",
         "slider_visual": "dots",
         "auto_rotate": true,
         "change_slides_speed": 5,
@@ -225,7 +225,7 @@
         "image_ratio": "portrait",
         "columns_desktop": 3,
         "gap_desktop": 18,
-        "gap_mobile": 12,
+        "gap_mobile": 18,
         "shop_now_label": "Shop now",
         "card_content_color": "#ffffff",
         "card_content_padding": 20,
@@ -272,19 +272,81 @@
       ],
       "name": "Discover unique",
       "settings": {
-        "image": "shopify://shop_images/DSC05260_0c002bf9-3e85-47a2-aecc-09b6a4d52637.jpg",
+        "width_mobile": "full",
+        "width_desktop": "full",
+        "image": "shopify://shop_images/IMG_4916_1_1.jpg",
         "height": "medium",
         "desktop_image_width": "medium",
         "layout": "image_first",
         "image_behavior": "none",
         "content_layout": "no-overlap",
-        "desktop_content_position": "top",
+        "desktop_content_position": "middle",
         "desktop_content_alignment": "left",
         "mobile_content_alignment": "left",
         "section_color_scheme": "scheme-contact-send-button",
         "color_scheme": "scheme-contact-send-button",
         "padding_top": 0,
         "padding_bottom": 0
+      }
+    },
+    "multicolumn_P8VC9G": {
+      "type": "multicolumn",
+      "blocks": {
+        "column_WhPUBR": {
+          "type": "column",
+          "settings": {
+            "image": "shopify://shop_images/DSC05343.jpg",
+            "title": "&nbsp;Celebrate African Heritage&nbsp;",
+            "text": "<p>Embrace the beauty and richness of African culture through fashion inspired by traditional wear.</p>",
+            "link_label": "",
+            "link": ""
+          }
+        },
+        "column_XzaprP": {
+          "type": "column",
+          "settings": {
+            "image": "shopify://shop_images/thread-spools-stacked-on-a-shelf.jpg",
+            "title": "&nbsp;Express Your Unique Style",
+            "text": "<p>Discover unique, handmade designs crafted to reflect your personality and help you stand out.</p>",
+            "link_label": "",
+            "link": ""
+          }
+        },
+        "column_nyDL44": {
+          "type": "column",
+          "settings": {
+            "image": "shopify://shop_images/DSC05260_0c002bf9-3e85-47a2-aecc-09b6a4d52637.jpg",
+            "title": "&nbsp;Empower African Women",
+            "text": "<p>Support talented women entrepreneurs and artisans in Africa while celebrating their creativity and craftsmanship.</p>",
+            "link_label": "",
+            "link": ""
+          }
+        }
+      },
+      "block_order": [
+        "column_WhPUBR",
+        "column_XzaprP",
+        "column_nyDL44"
+      ],
+      "name": "Why RootedMiss",
+      "settings": {
+        "title": "Why RootedMiss",
+        "heading_size": "h1",
+        "heading_alignment": "center",
+        "image_width": "full",
+        "image_ratio": "portrait",
+        "button_label": "",
+        "button_link": "",
+        "columns_desktop": 3,
+        "gap_desktop": 12,
+        "column_alignment": "left",
+        "background_style": "none",
+        "color_scheme": "scheme-5",
+        "columns_mobile": "1",
+        "gap_mobile": 16,
+        "swipe_on_mobile": true,
+        "padding_top": 36,
+        "padding_bottom": 36
       }
     },
     "multicolumn1": {
@@ -303,19 +365,22 @@
       "block_order": [
         "column7"
       ],
-      "disabled": true,
+      "name": "RichText",
       "settings": {
         "title": "",
         "heading_size": "h1",
+        "heading_alignment": "left",
         "image_width": "third",
         "image_ratio": "adapt",
         "button_label": "",
         "button_link": "",
         "columns_desktop": 4,
+        "gap_desktop": 12,
         "column_alignment": "center",
         "background_style": "none",
         "color_scheme": "scheme-contact-send-button",
         "columns_mobile": "1",
+        "gap_mobile": 6,
         "swipe_on_mobile": true,
         "padding_top": 68,
         "padding_bottom": 68
@@ -418,15 +483,18 @@
       "settings": {
         "title": "",
         "heading_size": "h2",
+        "heading_alignment": "left",
         "image_width": "full",
         "image_ratio": "adapt",
         "button_label": "",
         "button_link": "",
         "columns_desktop": 4,
+        "gap_desktop": 12,
         "column_alignment": "left",
         "background_style": "primary",
         "color_scheme": "scheme-5",
         "columns_mobile": "1",
+        "gap_mobile": 6,
         "swipe_on_mobile": false,
         "padding_top": 44,
         "padding_bottom": 48
@@ -455,7 +523,7 @@
         "text_Lx9x3J": {
           "type": "text",
           "settings": {
-            "text": "&nbsp;Rooted in Africa, made to be uniquely yours. We honor artisanal craftsmanship, inspire pride in traditional wear, and empower women entrepreneurs in Africa.&nbsp;",
+            "text": "Rooted in Africa, made to be uniquely yours. We honor artisanal craftsmanship, inspire pride in traditional wear, and empower women entrepreneurs in Africa.&nbsp;",
             "text_style": "body",
             "typography_source": "custom",
             "typography_style": "auto",
@@ -490,6 +558,61 @@
         "mobile_content_alignment": "center",
         "show_text_below": false
       }
+    },
+    "newsletter_kWyDiP": {
+      "type": "newsletter",
+      "blocks": {
+        "heading_fJdjXr": {
+          "type": "heading",
+          "settings": {
+            "heading": "&nbsp;Subscribe to our emails for latest offers and deals&nbsp;",
+            "heading_size": "h1",
+            "typography_source": "theme",
+            "typography_style": "h4",
+            "custom_font": "sans_serif_n4",
+            "custom_size_desktop": 42,
+            "custom_size_mobile": 32,
+            "custom_line_desktop": 1.3,
+            "custom_line_mobile": 1.3,
+            "custom_spacing_desktop": 0.6,
+            "custom_spacing_mobile": 0.6,
+            "custom_case": "none"
+          }
+        },
+        "paragraph_xqHfcY": {
+          "type": "paragraph",
+          "disabled": true,
+          "settings": {
+            "text": "<p>Be the first to know about new collections and exclusive offers.</p>",
+            "typography_source": "theme",
+            "typography_style": "auto",
+            "custom_font": "jost_n4",
+            "custom_size_desktop": 16,
+            "custom_size_mobile": 15,
+            "custom_line_desktop": 1.8,
+            "custom_line_mobile": 1.8,
+            "custom_spacing_desktop": 0.6,
+            "custom_spacing_mobile": 0.6,
+            "custom_case": "none"
+          }
+        },
+        "email_form_REdFhG": {
+          "type": "email_form",
+          "settings": {}
+        }
+      },
+      "block_order": [
+        "heading_fJdjXr",
+        "paragraph_xqHfcY",
+        "email_form_REdFhG"
+      ],
+      "name": "t:sections.newsletter.presets.name",
+      "settings": {
+        "color_scheme": "scheme-5",
+        "full_width": true,
+        "padding_top": 40,
+        "padding_bottom": 52
+      }
     }
   },
   "order": [
@@ -498,10 +621,12 @@
     "rich_text",
     "collection_list_awFJhr",
     "image_with_text_nczc4q",
+    "multicolumn_P8VC9G",
     "multicolumn1",
     "featured_collection1",
     "featured_collection2",
     "multicolumn2",
-    "image_banner_y93FGj"
+    "image_banner_y93FGj",
+    "newsletter_kWyDiP"
   ]
 }

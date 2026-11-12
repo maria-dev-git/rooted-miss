@@ -404,3 +404,9 @@ quick-add-bulk .quantity__input {
 .quantity__input-disabled {
   pointer-events: none;
 }
+
+@media screen and (max-width: 749px) {
+  .quick-add-modal .quick-order-list__table tbody tr {
+    border-bottom: 1px solid #808080;
+  }
+}

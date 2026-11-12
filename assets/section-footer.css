@@ -506,3 +506,153 @@
     }
   }
 }
+
+/* The wrapper has no layout box on mobile; existing footer flow stays intact. */
+.footer__desktop-layout { display: contents; }
+
+@media screen and (min-width: 990px) {
+  .footer .footer__desktop-layout {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-start;
+    column-gap: 3rem;
+    row-gap: 3rem;
+  }
+  .footer__desktop-layout > .footer__content-top,
+  .footer__desktop-layout .footer__blocks-wrapper,
+  .footer__desktop-layout > .footer__content-bottom,
+  .footer__desktop-layout .footer__utility-row {
+    display: contents;
+  }
+  .footer .footer__desktop-layout .footer-block.grid__item {
+    flex: 1 1 0;
+    width: auto;
+    max-width: none;
+    min-width: 0;
+    margin: 0;
+    text-align: left;
+    order: 2;
+  }
+  .footer .footer__desktop-layout .footer-block--image { order: 1; }
+  .footer .footer__desktop-layout .footer-block-image { justify-content: flex-start; }
+  .footer .footer__desktop-layout .footer__localization {
+    flex: 1 1 0;
+    width: auto;
+    min-width: 0;
+    margin: 0;
+    padding: 0;
+    justify-content: flex-start;
+    align-items: flex-start;
+    order: 4;
+  }
+  .footer .footer__desktop-layout .footer__localization:empty { display: none; }
+  .footer .footer__desktop-layout .footer__legal-row {
+    flex: 0 0 100%;
+    width: 100%;
+    padding: 2rem 0 0;
+    border-top: 1px solid rgba(var(--color-foreground), 0.08);
+    margin: 0;
+    order: 5;
+  }
+  .footer .footer__desktop-layout .footer__copyright {
+    width: 100%;
+    margin: 0;
+    text-align: left;
+  }
+  .footer .footer__desktop-layout .footer__column--info {
+    flex: 0 0 100%;
+    width: 100%;
+    padding: 0;
+    margin: 0;
+    order: 6;
+  }
+  .footer .footer__desktop-layout .footer__column--info:empty { display: none; }
+}
+
+/* Desktop newsletter and social icons occupy one column in the first row. */
+@media screen and (min-width: 990px) {
+  .footer .footer__desktop-layout .footer-block--newsletter {
+    display: flex;
+    flex: 1.5 1 0;
+    flex-direction: column;
+    align-items: stretch;
+    justify-content: flex-start;
+    min-width: 0;
+    margin: 0;
+    gap: 1.5rem;
+    order: 3;
+  }
+  .footer .footer__desktop-layout .footer-block--newsletter > .footer-block__newsletter,
+  .footer .footer__desktop-layout .footer-block--newsletter > .footer__list-social,
+  .footer .footer__desktop-layout .footer-block--newsletter > .footer__follow-on-shop {
+    flex: 0 0 auto;
+    width: 100%;
+    min-width: 0;
+    margin: 0;
+    padding: 0;
+    align-items: flex-start;
+    text-align: left;
+  }
+  .footer .footer__desktop-layout .footer-block--newsletter > .footer-block__newsletter { order: 1; }
+  .footer .footer__desktop-layout .footer-block--newsletter > .footer__list-social { order: 2; justify-content: flex-start; }
+  .footer .footer__desktop-layout .footer-block--newsletter > .footer__follow-on-shop { order: 3; justify-content: flex-start; }
+  .footer .footer__desktop-layout .footer__newsletter,
+  .footer .footer__desktop-layout .newsletter-form__field-wrapper {
+    width: 100%;
+    max-width: none;
+    margin: 0;
+  }
+}
+
+/* Align desktop localization with the other first-row footer columns. */
+@media screen and (min-width: 990px) {
+  .footer .footer__desktop-layout .footer__localization localization-form {
+    display: block;
+    min-width: 0;
+  }
+  .footer .footer__desktop-layout .footer__localization .localization-form {
+    padding: 0;
+    margin: 0;
+  }
+  .footer .footer__desktop-layout .footer__localization h2 {
+    margin: 0 0 2rem;
+  }
+  .footer .footer__desktop-layout .footer__localization .localization-form__select {
+    margin: 0;
+  }
+}
+
+/* Match localization to the same mobile gutters as the upper footer content. */
+@media screen and (max-width: 749px) {
+  .footer .footer__utility-row {
+    padding-inline: calc(4rem / var(--font-body-scale));
+  }
+  .footer .footer__localization {
+    padding-inline: 0;
+  }
+  .footer .footer__localization localization-form {
+    display: block;
+    flex: 0 0 100%;
+    width: 100%;
+    min-width: 0;
+  }
+  .footer .footer__localization .localization-form {
+    display: flex;
+    width: 100%;
+    margin: 0;
+    padding: 1rem 0;
+  }
+  .footer .footer__localization .localization-form > div,
+  .footer .footer__localization .disclosure {
+    width: 100%;
+    min-width: 0;
+  }
+  .footer .footer__localization .localization-form__select {
+    box-sizing: border-box;
+    width: 100%;
+    margin-inline: 0;
+  }
+  .footer .footer__localization h2 {
+    margin-inline: 0;
+  }
+}
