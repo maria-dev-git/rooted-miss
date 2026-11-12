@@ -28,11 +28,30 @@
             "heading": "Quick links",
             "menu": "footer-menu"
           }
+        },
+        "text_gyJWQq": {
+          "type": "text",
+          "disabled": true,
+          "settings": {
+            "heading": "Heading",
+            "subtext": "<p>Share contact information, store details, and brand content with your customers.</p>",
+            "typography_source": "theme",
+            "typography_style": "auto",
+            "custom_font": "jost_n4",
+            "custom_size_desktop": 16,
+            "custom_size_mobile": 15,
+            "custom_line_desktop": 1.8,
+            "custom_line_mobile": 1.8,
+            "custom_spacing_desktop": 0.6,
+            "custom_spacing_mobile": 0.6,
+            "custom_case": "none"
+          }
         }
       },
       "block_order": [
         "image_C7kYr7",
-        "link_list"
+        "link_list",
+        "text_gyJWQq"
       ],
       "settings": {
         "color_scheme": "scheme-5",
