@@ -417,7 +417,7 @@ quick-add-bulk .quantity__input {
   width: min(1080px, calc(100% - 4rem)); max-height: calc(100dvh - 4rem);
   overflow-y: auto; border-radius: 0; color: rgb(var(--color-foreground));
 }
-.quick-view-modal .quick-add-modal__content-info { padding: 2.5rem; display: block; overflow: visible; height: auto; }
+.quick-view-modal .quick-add-modal__content-info { padding: 2.5rem; display: block; overflow: visible; height: auto; border: solid 1px #A0A0A0;}
 .quick-view-modal .quick-add-modal__toggle { position: absolute; top: .8rem; right: .8rem; border: 0; border-radius: 0; background: transparent; color: rgb(var(--color-foreground)); }
 .quick-view-modal product-info { display: block; }
 .quick-view-modal .product { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 4rem; margin: 0; }
