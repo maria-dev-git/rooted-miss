@@ -410,3 +410,132 @@ quick-add-bulk .quantity__input {
     border-bottom: 1px solid #808080;
   }
 }
+
+/* Product quick view: use the originating section's colors and theme fonts. */
+.quick-view-modal .quick-add-modal__content {
+  top: 50%; bottom: auto; transform: translate(-50%, -50%); margin: 0;
+  width: min(1080px, calc(100% - 4rem)); max-height: calc(100dvh - 4rem);
+  overflow-y: auto; border-radius: 0; color: rgb(var(--color-foreground));
+}
+.quick-view-modal .quick-add-modal__content-info { padding: 2.5rem; display: block; overflow: visible; height: auto; }
+.quick-view-modal .quick-add-modal__toggle { position: absolute; top: .8rem; right: .8rem; border: 0; border-radius: 0; background: transparent; color: rgb(var(--color-foreground)); }
+.quick-view-modal product-info { display: block; }
+.quick-view-modal .product { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 4rem; margin: 0; }
+.quick-view-modal .product:not(.product--no-media) .product__media-wrapper,
+.quick-view-modal .product:not(.product--no-media) .product__info-wrapper { width: 100%; max-width: none; padding: 16px; min-width: 0; }
+.quick-view-modal .product--no-media { grid-template-columns: minmax(0, 1fr); }
+.quick-view-modal .product__info-container { padding: .4rem 1rem 1rem 0; position: static; }
+.quick-view-modal .product__info-container > * { margin: 0 0 1.8rem; }
+html body .quick-view-modal .quick-view__vendor { font-family: var(--type-body-family); font-size: 13px; line-height: 1.5; margin-bottom: .6rem; }
+html body .quick-view-modal .product__title h2 { font-size: 26px; line-height: 1.2; margin: 0; }
+.quick-view-modal .product__title a:hover { text-decoration: none; }
+html body .quick-view-modal .price { font-size: 20px; line-height: 1.4; }
+html body .quick-view-modal .quick-view__description { font-family: var(--type-body-family); font-size: 16px; line-height: 1.6; color: rgb(var(--color-foreground)); }
+.quick-view-modal variant-selects { display: block; }
+.quick-view-modal .product-form__input { max-width: none; margin: 0 0 1.4rem; }
+html body .quick-view-modal .form__label { font-size: 15px; line-height: 1.5; }
+html body .quick-add button.quick-add__submit {width: 100%;}
+.quick-view-modal .product-form { margin: 0; }
+html body .quick-view-modal .product-form__submit { width: 100%; max-width: none; }
+.quick-view-modal .quantity { width: 13rem; min-height: 4rem; }
+.quick-view-modal .product__view-details { text-align: center; font-size: 14px; margin-top: 1.5rem; text-decoration: none; }
+.quick-view-modal .product__media-list { margin: 0; padding: 0; }
+.quick-view-modal .product__media-item.grid__item { width: 100%; margin: 0; padding: 0; max-width: none; }
+.quick-view-modal .product-media-container,
+.quick-view-modal .product-media-container.constrain-height { width: 100%; max-width: none; --constrained-min-height: 0px; }
+.quick-view-modal .product__media img { object-fit: contain; }
+.quick-view-modal .product__media-icon,
+.quick-view-modal .product__media-toggle,
+.quick-view-modal .thumbnail-slider { display: none; }
+.quick-view-modal .product__modal-opener { pointer-events: none; }
+@media screen and (max-width: 749px) {
+  .quick-view-modal .quick-add-modal__content { width: calc(100% - 2rem); max-height: calc(100dvh - 2rem); }
+  .quick-view-modal .quick-add-modal__content-info { padding: 1.5rem 0.5rem 1rem; }
+  .quick-view-modal .product { grid-template-columns: minmax(0, 1fr); gap: 2rem; }
+  .quick-view-modal .product__info-container { padding: 0; }
+  html body .quick-view-modal .product__title h2 { font-size: 22px; }
+
+}
+
+/* Use the product page's native variant styles; enable the modal gallery at every width. */
+.quick-view-modal [id^="GalleryViewer-"] { display: block; min-width: 0; }
+html body .quick-view-modal .product__media-list.slider {
+  display: flex; flex-wrap: nowrap; gap: 0; overflow-x: auto; overflow-y: hidden;
+  scroll-snap-type: x mandatory; scroll-behavior: smooth; scroll-padding: 0;
+  position: relative; margin: 0; padding: 0; width: 100%;
+  scrollbar-width: none; overscroll-behavior-x: contain;
+}
+.quick-view-modal .product__media-list::-webkit-scrollbar { display: none; }
+html body .quick-view-modal .product__media-list > .product__media-item.grid__item {
+  display: block !important; flex: 0 0 100%; width: 100%; max-width: 100%;
+  margin: 0; padding: 0; scroll-snap-align: start;
+}
+html body .quick-view-modal [id^="GalleryViewer-"] > .slider-buttons {
+  display: flex; align-items: center; justify-content: center; color: rgb(var(--color-foreground));
+}
+html body .quick-view-modal [id^="GalleryViewer-"] > .slider-buttons[hidden] { display: none; }
+html body .quick-view-modal .product__media-list.slider.rm-gallery-dragging { scroll-snap-type: none; scroll-behavior: auto; cursor: grabbing; user-select: none; }
+.quick-view-modal .product__media-list img { -webkit-user-drag: none; }
+@media (prefers-reduced-motion: reduce) {
+  html body .quick-view-modal .product__media-list.slider { scroll-behavior: auto; }
+}
+
+/* Overlay gallery arrows on the image, centered vertically. */
+.quick-view-modal [id^="GalleryViewer-"] { position: relative; }
+html body .quick-view-modal [id^="GalleryViewer-"] > .slider-buttons {
+  position: absolute; inset: 0; justify-content: space-between; pointer-events: none; z-index: 2;
+}
+.quick-view-modal [id^="GalleryViewer-"] > .slider-buttons .slider-button {
+  pointer-events: auto; width: 4.4rem; height: 4.4rem; margin: 0 .8rem;
+  border: 1px solid rgba(var(--color-foreground), .2); border-radius: 50%;
+  color: rgb(var(--color-foreground)); background: rgb(var(--color-background));
+}
+.quick-view-modal [id^="GalleryViewer-"] > .slider-buttons .slider-button:disabled { opacity: .4; }
+.quick-view-modal [id^="GalleryViewer-"] > .slider-buttons .slider-counter { display: none; }
+@media screen and (max-width: 749px) {
+  html body .quick-view-modal .product__media-list.slider,
+  html body .quick-view-modal .product__media-list > .product__media-item.grid__item,
+  html body .quick-view-modal .product-media-container,
+  html body .quick-view-modal .product-media-container.constrain-height,
+  html body .quick-view-modal .product__modal-opener,
+  html body .quick-view-modal .product__media {
+    height: 450px; min-height: 450px; max-height: 450px; aspect-ratio: auto;
+  }
+  html body .quick-view-modal .product__media {
+    padding: 0 !important;
+  }
+  html body .quick-view-modal .product__media img {
+    width: 100%; height: 100%; object-fit: contain;
+  }
+  html body .quick-view-modal .product-media-container deferred-media,
+  html body .quick-view-modal .product-media-container product-model {
+    height: 450px; padding: 0;
+  }
+}
+
+/* Override product-gallery desktop rules inside quick view only. */
+html body .quick-view-modal [id^="GalleryViewer-"] > .slider-buttons:not([hidden]) {
+  display: flex !important; visibility: visible; opacity: 1;
+}
+html body .quick-view-modal [id^="GalleryViewer-"] > .slider-buttons > .slider-button {
+  display: inline-flex !important; align-items: center; justify-content: center;
+  visibility: visible; flex: 0 0 4.4rem;
+}
+@media screen and (max-width: 749px) {
+  html body .quick-view-modal .product__media-list .product-media-container deferred-media,
+  html body .quick-view-modal .product__media-list .product-media-container product-model {
+    display: block; position: relative; width: 100%;
+    height: 450px !important; min-height: 450px; max-height: 450px;
+    padding: 0 !important; aspect-ratio: auto;
+  }
+  html body .quick-view-modal .product__media-list .deferred-media video,
+  html body .quick-view-modal .product__media-list .deferred-media iframe,
+  html body .quick-view-modal .product__media-list .deferred-media model-viewer,
+  html body .quick-view-modal .product__media-list .deferred-media__poster {
+    position: absolute; inset: 0; width: 100%; height: 100%;
+    min-height: 0; max-height: 450px; object-fit: contain; padding: 0;
+  }
+  html body .quick-view-modal .product__media-list .deferred-media__poster img {
+    width: 100%; height: 100%; object-fit: contain;
+  }
+}

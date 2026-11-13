@@ -14,6 +14,7 @@ if (!customElements.get('quick-add-modal')) {
       hide(preventFocus = false) {
         const cartNotification = document.querySelector('cart-notification') || document.querySelector('cart-drawer');
         if (cartNotification) cartNotification.setActiveElement(this.openedBy);
+        this.galleryController?.abort();
         this.modalContent.innerHTML = '';
 
         if (preventFocus) this.openedBy = null;
@@ -26,11 +27,15 @@ if (!customElements.get('quick-add-modal')) {
         opener.querySelector('.loading__spinner').classList.remove('hidden');
 
         fetch(opener.getAttribute('data-product-url'))
-          .then((response) => response.text())
+          .then((response) => {
+            if (!response.ok) throw new Error('Product request failed');
+            return response.text();
+          })
           .then((responseText) => {
             const responseHTML = new DOMParser().parseFromString(responseText, 'text/html');
             const productElement = responseHTML.querySelector('product-info');
 
+            if (!productElement) throw new Error('Product quick view is unavailable');
             this.preprocessHTML(productElement);
             HTMLUpdateUtility.setInnerHTML(this.modalContent, productElement.outerHTML);
 
@@ -42,6 +47,16 @@ if (!customElements.get('quick-add-modal')) {
             this.modalContent.querySelector('product-component')?.dispatchViewEvent?.();
 
             super.show(opener);
+            this.initializeGallery();
+          })
+          .catch(() => {
+            this.modalContent.replaceChildren();
+            const link = document.createElement('a');
+            link.href = opener.getAttribute('data-product-url');
+            link.className = 'link';
+            link.textContent = window.accessibilityStrings?.quickViewFallback || 'View product details';
+            this.modalContent.appendChild(link);
+            super.show(opener);
           })
           .finally(() => {
             opener.removeAttribute('aria-disabled');
@@ -51,15 +66,86 @@ if (!customElements.get('quick-add-modal')) {
       }
 
       preprocessHTML(productElement) {
-        productElement.classList.forEach((classApplied) => {
-          if (classApplied.startsWith('color-') || classApplied === 'gradient')
-            this.modalContent.classList.add(classApplied);
+        const scheme = this.dataset.colorScheme;
+        const targets = [this.modalContent, productElement];
+        targets.forEach(element => {
+          Array.from(element.classList).filter(name => name.startsWith('color-')).forEach(name => element.classList.remove(name));
+          if (scheme) element.classList.add('color-' + scheme);
+          element.classList.add('gradient');
         });
+        this.prepareQuickView(productElement);
+        this.prepareGallery(productElement);
         this.preventDuplicatedIDs(productElement);
         this.removeDOMElements(productElement);
         this.removeGalleryListSemantic(productElement);
         this.updateImageSizes(productElement);
         this.preventVariantURLSwitching(productElement);
+      }
+
+      prepareQuickView(productElement) {
+        const info = productElement.querySelector('.product__info-container');
+        if (!info) return;
+        const summary = productElement.querySelector('[data-quick-view-summary]')?.content;
+        const title = info.querySelector('.product__title');
+        const price = info.querySelector('[id^="price-"]');
+        const picker = info.querySelector('variant-selects');
+        const quantity = info.querySelector('[id^="Quantity-Form-"]');
+        const form = info.querySelector('product-form')?.parentElement;
+        const details = info.querySelector('.product__view-details');
+        const vendor = summary?.querySelector('.quick-view__vendor')?.cloneNode(true);
+        const description = summary?.querySelector('.quick-view__description')?.cloneNode(true);
+        // Move existing controls, preserving Shopify's variant, quantity and cart behavior.
+        const blocks = [vendor, title, price, description, picker, quantity, form, details].filter(Boolean);
+        info.replaceChildren(...blocks);
+        info.classList.remove('product__column-sticky');
+        productElement.querySelectorAll('.shopify-payment-button, .product__tax, .product__pickup-availabilities, .product-form__input--dropdown ~ .product__tax').forEach(el => el.remove());
+        productElement.querySelectorAll('[data-quick-view-summary]').forEach(el => el.remove());
+      }
+
+      prepareGallery(productElement) {
+        const viewer = productElement.querySelector('[id^="GalleryViewer-"]');
+        const slider = viewer?.querySelector('[id^="Slider-Gallery-"]');
+        if (!slider) return;
+        slider.classList.remove('slider--mobile', 'slider--tablet');
+        slider.classList.add('slider--everywhere');
+        const controls = viewer.querySelector('.slider-buttons');
+        if (controls) {
+          controls.classList.remove('quick-add-hidden', 'small-hide', 'medium-hide', 'large-up-hide');
+          controls.hidden = slider.querySelectorAll('[data-media-id]').length < 2;
+        }
+      }
+
+      initializeGallery() {
+        this.galleryController?.abort();
+        this.galleryController = new AbortController();
+        const { signal } = this.galleryController;
+        const viewer = this.modalContent.querySelector('[id^="GalleryViewer-"]');
+        const slider = viewer?.querySelector('[id^="Slider-Gallery-"]');
+        if (!slider) return;
+        requestAnimationFrame(() => viewer.resetPages?.());
+        let drag;
+        const end = (event) => {
+          if (!drag || event.pointerId !== drag.id) return;
+          const target = Math.round(slider.scrollLeft / slider.clientWidth) * slider.clientWidth;
+          drag = null;
+          slider.classList.remove('rm-gallery-dragging');
+          if (slider.hasPointerCapture(event.pointerId)) slider.releasePointerCapture(event.pointerId);
+          slider.scrollTo({ left: target });
+        };
+        slider.addEventListener('pointerdown', event => {
+          // Touch uses native horizontal scrolling, keeping vertical page scrolling available.
+          if (event.pointerType !== 'mouse' || event.button !== 0 || event.target.closest('button, a, video, deferred-media, product-model')) return;
+          drag = { id: event.pointerId, x: event.clientX, scroll: slider.scrollLeft };
+          slider.setPointerCapture(event.pointerId);
+          slider.classList.add('rm-gallery-dragging');
+        }, { signal });
+        slider.addEventListener('pointermove', event => {
+          if (!drag || event.pointerId !== drag.id) return;
+          slider.scrollLeft = drag.scroll - (event.clientX - drag.x);
+        }, { signal });
+        slider.addEventListener('pointerup', end, { signal });
+        slider.addEventListener('pointercancel', end, { signal });
+        slider.addEventListener('lostpointercapture', end, { signal });
       }
 
       preventVariantURLSwitching(productElement) {
