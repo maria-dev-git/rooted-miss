@@ -42,18 +42,27 @@
           "type": "description",
           "settings": {}
         },
+        "size_measurements_FgQLC6": {
+          "type": "size_measurements",
+          "settings": {
+            "heading": "Size measurements",
+            "icon": "ruler",
+            "size_option": "Size",
+            "header_background": "#121212",
+            "table_background": "#000000",
+            "border_color": "#2D2D2D",
+            "font_color": "#FFFFFF"
+          }
+        },
         "collapsible-row-0": {
           "type": "collapsible_tab",
+          "name": "Materials and Care",
           "settings": {
             "heading": "Materials and care",
-            "icon": "leaf",
+            "icon": "iron",
             "content": "<p>Care instructions:</p><p><strong>Each garment is handmade by skilled artisans using fabrics sourced from local markets. As a result, the exact fiber content cannot always be verified.</strong></p><p><strong>Care Instructions</strong></p><ul><li>Hand wash cold separately or dry clean.</li><li>Do not bleach.</li><li>Line dry.</li><li>Cool iron on the reverse side if needed.</li></ul><p><strong>Made in Nigeria</strong></p>",
             "page": "materials-and-care"
           }
-        },
-        "size_measurements": {
-          "type": "size_measurements",
-          "settings": {}
         }
       },
       "block_order": [
@@ -63,7 +72,7 @@
         "quantity_selector_hWtVnD",
         "buy_buttons_kJV43P",
         "description",
-        "size_measurements",
+        "size_measurements_FgQLC6",
         "collapsible-row-0"
       ],
       "settings": {

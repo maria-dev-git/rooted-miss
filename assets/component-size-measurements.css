@@ -2,12 +2,6 @@
   max-width: 100%;
   overflow-x: auto;
   -webkit-overflow-scrolling: touch;
-  scrollbar-width: none;
-  -ms-overflow-style: none;
-}
-
-.size-measurements__scroll::-webkit-scrollbar {
-  display: none;
 }
 
 .size-measurements__table {
