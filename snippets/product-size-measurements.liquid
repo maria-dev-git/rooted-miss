@@ -1,0 +1,96 @@
+{%- liquid
+  assign sizes = '52,54,56,58,60' | split: ','
+  assign namespace = 'custom'
+  assign measurement_keys = 'length,bust,waist,hips,sleeve_nape_to_wrist' | split: ','
+  assign size_option_name = block.settings.size_option | default: 'Size' | downcase
+  assign size_option_index = nil
+  for option in product.options_with_values
+    assign option_name = option.name | downcase
+    if option_name == size_option_name
+      assign size_option_index = forloop.index0
+      break
+    endif
+  endfor
+-%}
+{%- capture measurement_rows -%}
+  {%- for size in sizes -%}
+    {%- for variant in product.variants -%}
+      {%- liquid
+        assign matches_size = false
+        if size_option_index != nil
+          assign variant_size = variant.options[size_option_index] | strip
+          if variant_size == size
+            assign matches_size = true
+          endif
+        else
+          for value in variant.options
+            assign option_value = value | strip
+            if option_value == size
+              assign matches_size = true
+              break
+            endif
+          endfor
+        endif
+        assign has_measurements = false
+        for key in measurement_keys
+          assign metafield_key = key
+          if variant.metafields[namespace][metafield_key].value != blank
+            assign has_measurements = true
+            break
+          endif
+        endfor
+      -%}
+      {%- if matches_size and has_measurements -%}
+        <tr>
+          <th scope="row">{{ size | escape }}</th>
+          {%- for key in measurement_keys -%}
+            {%- liquid
+              assign metafield_key = key
+              assign measurement = variant.metafields[namespace][metafield_key]
+            -%}
+            <td>{% if measurement.value != blank %}{{ measurement | metafield_text | escape }}{% else %}&mdash;{% endif %}</td>
+          {%- endfor -%}
+        </tr>
+        {%- break -%}
+      {%- endif -%}
+    {%- endfor -%}
+  {%- endfor -%}
+{%- endcapture -%}
+{%- if measurement_rows != blank or request.design_mode -%}
+  <div class="product__accordion accordion quick-add-hidden" {{ block.shopify_attributes }}>
+    <details id="Details-{{ block.id }}-{{ section.id }}">
+      <summary>
+        <div class="summary__title">
+          {% render 'icon-accordion', icon: block.settings.icon %}
+          <h2 class="h4 accordion__title inline-richtext">{{ block.settings.heading | default: 'Size measurements' | escape }}</h2>
+        </div>
+        {{- 'icon-caret.svg' | inline_asset_content -}}
+      </summary>
+      <div class="accordion__content" id="ProductAccordion-{{ block.id }}-{{ section.id }}">
+        {%- if measurement_rows != blank -%}
+          <div class="size-measurements__scroll" role="region" aria-label="{{ block.settings.heading | default: 'Size measurements' | escape }}" tabindex="0">
+            <table class="size-measurements__table" style="--measurement-font-color: {{ block.settings.font_color | default: '#121212' }}; --measurement-header-background: {{ block.settings.header_background | default: '#f2f2f2' }}; --measurement-table-background: {{ block.settings.table_background | default: '#ffffff' }}; --measurement-border-color: {{ block.settings.border_color | default: '#dddddd' }};">
+              <caption class="visually-hidden">{{ block.settings.heading | default: 'Size measurements' | escape }}</caption>
+              <thead><tr>
+                <th scope="col">Size</th>
+                {%- for key in measurement_keys -%}
+                  {%- liquid
+                    assign metafield_key = key
+                    assign column_label = metafield_key | replace: '_', ' ' | capitalize
+                    if metafield_key == 'sleeve_nape_to_wrist'
+                      assign column_label = 'Sleeve (nape to wrist)'
+                    endif
+                  -%}
+                  <th scope="col">{{ column_label | escape }}</th>
+                {%- endfor -%}
+              </tr></thead>
+              <tbody>{{ measurement_rows }}</tbody>
+            </table>
+          </div>
+        {%- else -%}
+          <p>Add variant measurements for sizes 52–60 and check the metafield namespace and keys in this block’s settings.</p>
+        {%- endif -%}
+      </div>
+    </details>
+  </div>
+{%- endif -%}
